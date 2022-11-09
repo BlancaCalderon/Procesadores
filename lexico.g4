@@ -31,7 +31,7 @@ DIV:'/';
 EXP:'^';
 MOD:'%';
 
-//Operador de asignacioón
+//Operador de asignación
 IGUAL:'=';
 
 //Operadores de comparación
@@ -53,8 +53,8 @@ WS:[ \b\n\t\r]+ -> skip;
 LETRA:[A-Z|a-z];
 VAR:(LETRA|'_')(LETRA|DIGITO|'_')*;
 
-//Tipos de datos
-//NUMERICO
+/* TIPOS DE DATOS */
+//Numérico
 fragment DIGITO:[0-9];
 fragment SIGNO:('-'|'+');
 fragment ENTERO:DIGITO+;
@@ -62,11 +62,11 @@ fragment REAL:ENTERO?'.'DIGITO+;
 NUMERICO:ENTERO|REAL;
 BOOLEANO: 'true'|'false';
 
-//TEXTO
+//Texto
 TEXTO: '"' (ESCAPE|.)*? '"';
 fragment ESCAPE: '\\'[bntr"\\];
 
-//POLINOMIO
+//Polinomio
 fragment OPERADOR:SUM|REST;
 fragment MONOMIO:(NUMERICO|LETRA|NUMERICO LETRA)(EXP ENTERO)?;
 COMILLASIMPLE: '\'';

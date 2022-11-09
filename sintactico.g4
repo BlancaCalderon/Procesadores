@@ -2,13 +2,13 @@ parser grammar sintactico;
 options {tokenVocab = lexico;}
 
 //Axioma
-axioma: sentencia* EOF;
+axioma: func* EOF;
 
 //Sentencias
-sentencia:(decl|expr|asig|cond|bucle|func|dev|bloque) puntocoma;
+sentencia:(decl | asig | expr | cond | bucle | dev | bloque) puntocoma;
 
 //Declaraciones
-decl: let (identificador|asig);
+decl: let (identificador | asig);
 
 //Asignaciones
 asig: identificador igual expr;
@@ -25,7 +25,11 @@ expr:   pi expr pd                  |
         booleano                    |
         polinomio                   |
         llamadafuncion              |
+        signonumerico               |
         numerico                    ;
+
+//Bloque de código
+bloque: ci sentencia* cd;
 
 //Condicionales
 cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?;
@@ -44,7 +48,9 @@ argumento: expr;
 //Declaración de funciones
 func: function nombrefuncion cuerpofuncion bloque;
 cuerpofuncion: pi parametros? pd;
-bloque: ci sentencia* cd;
+
+//Retorno de funciones
+dev: (return expr?)?;
 
 //Operadores
 opercomparacion: opermenorque | opermayorque | opermayorigualque | opermenorigualque | operiguala | operdistinto;
@@ -55,13 +61,13 @@ opersumrest: opersum | operrest;
 
 //Polinomios
 polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
-monomio:(numerico letra|numerico|letra) (operexp numerico)*;
+monomio:(numerico letra | numerico | letra) (operexp numerico)*;
 
 //Parámetros
 parametros: parametro (coma parametro)*;
 parametro: identificador;
-dev: (return expr?)?;
 
+/* ELEMENTOS DEL LEXER */
 //Keywords
 let: LET;
 if: IF;
@@ -99,6 +105,7 @@ operxor: XOR;
 operneg: NEG;
 
 //Tipos de datos
+signonumerico: opersumrest numerico;
 numerico: NUMERICO;
 cadena: TEXTO;
 booleano: BOOLEANO;

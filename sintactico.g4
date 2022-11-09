@@ -2,7 +2,7 @@ parser grammar sintactico;
 options {tokenVocab = lexico;}
 
 //Axioma
-axioma: func* EOF;
+axioma: (func puntocoma)* EOF;
 
 //Sentencias
 sentencia:(decl | asig | expr | cond | bucle | dev | bloque) puntocoma;
@@ -105,7 +105,7 @@ operxor: XOR;
 operneg: NEG;
 
 //Tipos de datos
-signonumerico: opersumrest numerico;
+signonumerico: pi opersumrest numerico pd;
 numerico: NUMERICO;
 cadena: TEXTO;
 booleano: BOOLEANO;

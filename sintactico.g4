@@ -1,5 +1,5 @@
 parser grammar sintactico;
-options { tokenVocab = lexico;}
+options {tokenVocab = lexico;}
 
 //Axioma
 axioma: sentencia* EOF;

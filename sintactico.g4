@@ -4,40 +4,48 @@ options { tokenVocab = lexico;}
 axioma: sentencia* EOF;
 
 sentencia:(decl|expr|asig|cond|bucle|func|dev|bloque) PUNTOCOMA;
-decl: let (variable|asig);
-asig: variable IGUAL expr;
+decl: let (identificador|asig);
+asig: identificador IGUAL expr;
 expr:   PI expr PD                  |
+        expr opermodexp expr        |
         expr opermuldiv expr        |
         expr opersumrest expr       |
         expr opercomparacion expr   |
         expr operlogico expr        |
-        variable                    |
+        identificador               |
         cadena                      |
         polinomio                   |
         llamadafuncion              |
-        evaluacionpolinomio         |
         numerico;
-cond: if PI expr PD bloque;
-bucle: while PI expr PD bloque;
-func: function variable PI parametros? PD bloque;
+cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?;
+cuerpocondicion: PI expr PD;
+
+bucle: buclewhile;
+buclewhile: while cuerpocondicion bloque;
+
+func: function nombrefuncion PI parametros? PD bloque;
 bloque: CI sentencia* CD;
 
 opercomparacion: opermenorque | opermayorque | opermayorigualque | opermenorigualque | operiguala | operdistinto;
 operlogico: operand | operor | operxor | operneg;
 opermuldiv: opermul | operdiv;
+opermodexp: opermod | operexp;
 opersumrest: opersum | operrest;
 
-evaluacionpolinomio: val PI expr (COMA caracter COMA expr)* PD;
-
-llamadafuncion: variable PI argumentos? PD;
+llamadafuncion: nombrefuncion PI argumentos? PD;
 argumentos: argumento (COMA argumento)*;
 argumento: expr;
 
+polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
+monomio:(numerico letra|numerico|letra) (operexp numerico)*;
+
 parametros: parametro (COMA parametro)*;
-parametro: variable;
+parametro: identificador;
 dev: (return expr?)?;
 
-variable: VAR;
+identificador: VAR | LETRA;
+nombrefuncion: VAR | LETRA;
+
 opersum: SUM;
 operrest: REST;
 opermul: MULT;
@@ -52,13 +60,16 @@ operand: AND;
 operor: OR;
 operxor: XOR;
 operneg: NEG;
+operexp: EXP;
+opermod: MOD;
 numerico: NUMERICO;
 let: LET;
 if: IF;
+elseif: ELSEIF;
+else: ELSE;
 while: WHILE;
 function: FUNCTION;
 return: RETURN;
-val: VAL;
-caracter: CARACTER;
+letra: LETRA;
 cadena: TEXTO;
-polinomio: POLINOMIO;
+comillasimple: COMILLASIMPLE;

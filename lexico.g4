@@ -2,11 +2,12 @@ lexer grammar lexico;
 
 //Keywords
 IF:'if';
+ELSEIF: 'else if';
+ELSE: 'else';
 WHILE:'while';
 FUNCTION:'function';
 RETURN:'return';
 LET:'let';
-VAL:'val';
 
 //Separadores
 CI:'{';
@@ -49,14 +50,15 @@ BLOQUE:'***'.*?'***'->skip;
 WS:[ \b\n\t\r]+ -> skip;
 
 //Identificadores
+LETRA:[A-Z|a-z];
 VAR:(LETRA|'_')(LETRA|DIGITO|'_')*;
 
 //Tipos de datos
 //NUMERICO
 fragment DIGITO:[0-9];
 fragment SIGNO:('-'|'+');
-fragment ENTERO:/*SIGNO?*/DIGITO+;
-fragment REAL:/*SIGNO?*/ENTERO?'.'DIGITO+;
+fragment ENTERO:DIGITO+;
+fragment REAL:ENTERO?'.'DIGITO+;
 NUMERICO:ENTERO|REAL;
 
 //TEXTO
@@ -64,9 +66,6 @@ TEXTO: '"' (ESCAPE|.)*? '"';
 fragment ESCAPE: '\\'[bntr"\\];
 
 //POLINOMIO
-fragment LETRA:[A-Z|a-z];
 fragment OPERADOR:SUM|REST;
 fragment MONOMIO:(NUMERICO|LETRA|NUMERICO LETRA)(EXP ENTERO)?;
-fragment COMILLASIMPLE: '\'';
-CARACTER: COMILLASIMPLE LETRA COMILLASIMPLE;
-POLINOMIO:COMILLASIMPLE MONOMIO (OPERADOR MONOMIO)*?COMILLASIMPLE;
+COMILLASIMPLE: '\'';

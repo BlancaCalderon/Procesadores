@@ -1,12 +1,20 @@
 parser grammar sintactico;
 options { tokenVocab = lexico;}
 
+//Axioma
 axioma: sentencia* EOF;
 
-sentencia:(decl|expr|asig|cond|bucle|func|dev|bloque) PUNTOCOMA;
+//Sentencias
+sentencia:(decl|expr|asig|cond|bucle|func|dev|bloque) puntocoma;
+
+//Declaraciones
 decl: let (identificador|asig);
-asig: identificador IGUAL expr;
-expr:   PI expr PD                  |
+
+//Asignaciones
+asig: identificador igual expr;
+
+//Expresiones
+expr:   pi expr pd                  |
         expr opermodexp expr        |
         expr opermuldiv expr        |
         expr opersumrest expr       |
@@ -14,55 +22,47 @@ expr:   PI expr PD                  |
         expr operlogico expr        |
         identificador               |
         cadena                      |
+        booleano                    |
         polinomio                   |
         llamadafuncion              |
-        numerico;
-cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?;
-cuerpocondicion: PI expr PD;
+        numerico                    ;
 
+//Condicionales
+cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?;
+cuerpocondicion: pi expr pd;
+
+//Bucles
 bucle: buclewhile;
 buclewhile: while cuerpocondicion bloque;
 
-func: function nombrefuncion PI parametros? PD bloque;
-bloque: CI sentencia* CD;
+//Llamada a funciones
+llamadafuncion: nombrefuncion cuerpoargumentos;
+cuerpoargumentos: pi argumentos? pd;
+argumentos: argumento (coma argumento)*;
+argumento: expr;
 
+//Declaración de funciones
+func: function nombrefuncion cuerpofuncion bloque;
+cuerpofuncion: pi parametros? pd;
+bloque: ci sentencia* cd;
+
+//Operadores
 opercomparacion: opermenorque | opermayorque | opermayorigualque | opermenorigualque | operiguala | operdistinto;
 operlogico: operand | operor | operxor | operneg;
 opermuldiv: opermul | operdiv;
 opermodexp: opermod | operexp;
 opersumrest: opersum | operrest;
 
-llamadafuncion: nombrefuncion PI argumentos? PD;
-argumentos: argumento (COMA argumento)*;
-argumento: expr;
-
+//Polinomios
 polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
 monomio:(numerico letra|numerico|letra) (operexp numerico)*;
 
-parametros: parametro (COMA parametro)*;
+//Parámetros
+parametros: parametro (coma parametro)*;
 parametro: identificador;
 dev: (return expr?)?;
 
-identificador: VAR | LETRA;
-nombrefuncion: VAR | LETRA;
-
-opersum: SUM;
-operrest: REST;
-opermul: MULT;
-operdiv: DIV;
-opermenorque: MENORQUE;
-opermenorigualque: MENORIGUALQUE;
-opermayorque: MAYORQUE;
-opermayorigualque: MAYORIGUALQUE;
-operiguala: IGUALA;
-operdistinto: DISTINTO;
-operand: AND;
-operor: OR;
-operxor: XOR;
-operneg: NEG;
-operexp: EXP;
-opermod: MOD;
-numerico: NUMERICO;
+//Keywords
 let: LET;
 if: IF;
 elseif: ELSEIF;
@@ -70,6 +70,47 @@ else: ELSE;
 while: WHILE;
 function: FUNCTION;
 return: RETURN;
+
+//Identificadores
 letra: LETRA;
+identificador: VAR | LETRA;
+nombrefuncion: VAR | LETRA;
+
+//Operadores matemáticos
+opersum: SUM;
+operrest: REST;
+opermul: MULT;
+operdiv: DIV;
+operexp: EXP;
+opermod: MOD;
+
+//Operadores de comparación
+opermenorque: MENORQUE;
+opermenorigualque: MENORIGUALQUE;
+opermayorque: MAYORQUE;
+opermayorigualque: MAYORIGUALQUE;
+operiguala: IGUALA;
+operdistinto: DISTINTO;
+
+//Operadores logicos
+operand: AND;
+operor: OR;
+operxor: XOR;
+operneg: NEG;
+
+//Tipos de datos
+numerico: NUMERICO;
 cadena: TEXTO;
+booleano: BOOLEANO;
+
+//Operador de asignación
+igual: IGUAL;
+
+//Separadores
+ci: CI;
+cd: CD;
+pi: PI;
+pd: PD;
 comillasimple: COMILLASIMPLE;
+puntocoma: PUNTOCOMA;
+coma: COMA;

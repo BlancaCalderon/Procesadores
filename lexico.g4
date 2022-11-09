@@ -60,6 +60,7 @@ fragment SIGNO:('-'|'+');
 fragment ENTERO:DIGITO+;
 fragment REAL:ENTERO?'.'DIGITO+;
 NUMERICO:ENTERO|REAL;
+BOOLEANO: 'true'|'false';
 
 //TEXTO
 TEXTO: '"' (ESCAPE|.)*? '"';

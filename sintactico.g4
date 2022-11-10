@@ -5,7 +5,7 @@ options {tokenVocab = lexico;}
 axioma: (func puntocoma)* EOF;
 
 //Sentencias
-sentencia:(decl | asig | expr | cond | bucle | dev | bloque) puntocoma;
+sentencia: (decl | asig | expr | cond | bucle | dev | bloque) puntocoma;
 
 //Declaraciones
 decl: let (identificador | asig);
@@ -20,13 +20,14 @@ expr:   pi expr pd                  |
         expr opersumrest expr       |
         expr opercomparacion expr   |
         expr operlogico expr        |
+        operneg expr                |
         identificador               |
         cadena                      |
         booleano                    |
-        polinomio                   |
-        llamadafuncion              |
         signonumerico               |
-        numerico                    ;
+        numerico                    |
+        polinomio                   |
+        llamadafuncion              ;
 
 //Bloque de código
 bloque: ci sentencia* cd;
@@ -49,23 +50,26 @@ argumento: expr;
 func: function nombrefuncion cuerpofuncion bloque;
 cuerpofuncion: pi parametros? pd;
 
+//Parámetros
+parametros: parametro (coma parametro)*;
+parametro: identificador;
+
 //Retorno de funciones
-dev: (return expr?)?;
+dev: return expr?;
 
 //Operadores
 opercomparacion: opermenorque | opermayorque | opermayorigualque | opermenorigualque | operiguala | operdistinto;
-operlogico: operand | operor | operxor | operneg;
+operlogico: operand | operor | operxor;
 opermuldiv: opermul | operdiv;
 opermodexp: opermod | operexp;
 opersumrest: opersum | operrest;
 
 //Polinomios
 polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
-monomio:(numerico letra | numerico | letra) (operexp numerico)*;
+monomio: (numerico letra+ | numerico | letra+) (operexp numerico)*;
 
-//Parámetros
-parametros: parametro (coma parametro)*;
-parametro: identificador;
+//Numéricos con signo
+signonumerico: pi opersumrest numerico pd;
 
 /* ELEMENTOS DEL LEXER */
 //Keywords
@@ -105,7 +109,6 @@ operxor: XOR;
 operneg: NEG;
 
 //Tipos de datos
-signonumerico: pi opersumrest numerico pd;
 numerico: NUMERICO;
 cadena: TEXTO;
 booleano: BOOLEANO;

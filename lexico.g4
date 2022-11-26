@@ -1,5 +1,5 @@
 lexer grammar lexico;
-
+@header{package cositas;}
 //Keywords
 IF: 'if';
 ELSEIF: 'else if';

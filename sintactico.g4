@@ -1,4 +1,5 @@
 parser grammar sintactico;
+@header{package cositas;}
 options {tokenVocab = lexico;}
 
 //Axioma

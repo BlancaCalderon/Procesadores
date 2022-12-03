@@ -1,0 +1,6 @@
+function patata() {
+	let a = 1 - 2;
+	let b;
+	b = 5;
+	let b = "hola";
+};

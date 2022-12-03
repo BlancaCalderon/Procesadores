@@ -1,5 +1,4 @@
-// Generated from C:/Users/mfran/IdeaProjects/Prueba\sintactico.g4 by ANTLR 4.10.1
-
+// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -28,15 +27,29 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitSentencia(sintactico.SentenciaContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link sintactico#decl}.
+	 * Enter a parse tree produced by the {@code letIdentificador}
+	 * labeled alternative in {@link sintactico#decl}.
 	 * @param ctx the parse tree
 	 */
-	void enterDecl(sintactico.DeclContext ctx);
+	void enterLetIdentificador(sintactico.LetIdentificadorContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link sintactico#decl}.
+	 * Exit a parse tree produced by the {@code letIdentificador}
+	 * labeled alternative in {@link sintactico#decl}.
 	 * @param ctx the parse tree
 	 */
-	void exitDecl(sintactico.DeclContext ctx);
+	void exitLetIdentificador(sintactico.LetIdentificadorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code letAsignacion}
+	 * labeled alternative in {@link sintactico#decl}.
+	 * @param ctx the parse tree
+	 */
+	void enterLetAsignacion(sintactico.LetAsignacionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code letAsignacion}
+	 * labeled alternative in {@link sintactico#decl}.
+	 * @param ctx the parse tree
+	 */
+	void exitLetAsignacion(sintactico.LetAsignacionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link sintactico#asig}.
 	 * @param ctx the parse tree
@@ -48,15 +61,173 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitAsig(sintactico.AsigContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link sintactico#expr}.
+	 * Enter a parse tree produced by the {@code muldivoper}
+	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(sintactico.ExprContext ctx);
+	void enterMuldivoper(sintactico.MuldivoperContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link sintactico#expr}.
+	 * Exit a parse tree produced by the {@code muldivoper}
+	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(sintactico.ExprContext ctx);
+	void exitMuldivoper(sintactico.MuldivoperContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code bool}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBool(sintactico.BoolContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code bool}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBool(sintactico.BoolContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code cad}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCad(sintactico.CadContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code cad}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCad(sintactico.CadContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code poli}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterPoli(sintactico.PoliContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code poli}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitPoli(sintactico.PoliContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code negacion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNegacion(sintactico.NegacionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code negacion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNegacion(sintactico.NegacionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code numeric}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumeric(sintactico.NumericContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code numeric}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumeric(sintactico.NumericContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code modexpoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterModexpoper(sintactico.ModexpoperContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code modexpoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitModexpoper(sintactico.ModexpoperContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ide}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterIde(sintactico.IdeContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ide}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitIde(sintactico.IdeContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code comparacionoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparacionoper(sintactico.ComparacionoperContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code comparacionoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparacionoper(sintactico.ComparacionoperContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code parentesis}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterParentesis(sintactico.ParentesisContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code parentesis}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitParentesis(sintactico.ParentesisContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code signumerico}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignumerico(sintactico.SignumericoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code signumerico}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignumerico(sintactico.SignumericoContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code logicooper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicooper(sintactico.LogicooperContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code logicooper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicooper(sintactico.LogicooperContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code sumrestoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSumrestoper(sintactico.SumrestoperContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code sumrestoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSumrestoper(sintactico.SumrestoperContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code funcion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncion(sintactico.FuncionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code funcion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncion(sintactico.FuncionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link sintactico#bloque}.
 	 * @param ctx the parse tree

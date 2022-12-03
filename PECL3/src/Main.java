@@ -10,20 +10,19 @@ public class Main {
         String file;
         int opcion;
 
-        if (args.length != 2) {
+        /*if (args.length != 2) {
             System.out.println("Error número de argumentos incorrectos");
             return;
-        }
+        }*/
 
-        opcion = Integer.parseInt(args[1]);
-        file = args[0];
+        opcion = 1;//Integer.parseInt(args[1]);
+        file = "./src/resources/prueba.txt";
 
         try {
 
             InputStream is = new FileInputStream(file);
 
             if (opcion == 1 || opcion == 2) {
-                System.out.println("Ejecutar todo");
 
                 CharStream input = CharStreams.fromStream(is);
                 lexico lexer = new lexico(input);

@@ -1,5 +1,4 @@
-// Generated from C:/Users/mfran/IdeaProjects/Prueba\sintactico.g4 by ANTLR 4.10.1
-
+// Generated from java-escape by ANTLR 4.11.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -23,11 +22,19 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSentencia(sintactico.SentenciaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link sintactico#decl}.
+	 * Visit a parse tree produced by the {@code letIdentificador}
+	 * labeled alternative in {@link sintactico#decl}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl(sintactico.DeclContext ctx);
+	T visitLetIdentificador(sintactico.LetIdentificadorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code letAsignacion}
+	 * labeled alternative in {@link sintactico#decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLetAsignacion(sintactico.LetAsignacionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link sintactico#asig}.
 	 * @param ctx the parse tree
@@ -35,11 +42,103 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsig(sintactico.AsigContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link sintactico#expr}.
+	 * Visit a parse tree produced by the {@code muldivoper}
+	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(sintactico.ExprContext ctx);
+	T visitMuldivoper(sintactico.MuldivoperContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code bool}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool(sintactico.BoolContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code cad}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCad(sintactico.CadContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code poli}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPoli(sintactico.PoliContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code negacion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNegacion(sintactico.NegacionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code numeric}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumeric(sintactico.NumericContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code modexpoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitModexpoper(sintactico.ModexpoperContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ide}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIde(sintactico.IdeContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code comparacionoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparacionoper(sintactico.ComparacionoperContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code parentesis}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParentesis(sintactico.ParentesisContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code signumerico}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignumerico(sintactico.SignumericoContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code logicooper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicooper(sintactico.LogicooperContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code sumrestoper}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSumrestoper(sintactico.SumrestoperContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code funcion}
+	 * labeled alternative in {@link sintactico#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncion(sintactico.FuncionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link sintactico#bloque}.
 	 * @param ctx the parse tree

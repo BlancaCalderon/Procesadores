@@ -1,12 +1,14 @@
 import java.util.HashMap;
 
-public class TablaSimbolo {
+public class TablaSimbolos {
 
     //Tabla de simbolos --> identificador{valor, tipo}
     private HashMap<String, HashMap<String, String>> tabla;
     private HashMap<String, Funcion> tablaFunciones;
 
-    public TablaSimbolo() {
+    public TablaSimbolos() {
+        tabla = new HashMap<>();
+        tablaFunciones = new HashMap<>();
     }
 
     /**
@@ -30,6 +32,10 @@ public class TablaSimbolo {
      */
     public String getValor(String id) {
         return tabla.get(id).get("valor");
+    }
+
+    public boolean containsId(String id) {
+        return tabla.containsKey(id);
     }
 
     /**
@@ -90,4 +96,11 @@ public class TablaSimbolo {
         tablaFunciones.remove(id);
     }
 
+    @Override
+    public String toString() {
+        return "TablaSimbolos{" +
+                "tabla=" + tabla +
+                ", tablaFunciones=" + tablaFunciones +
+                '}';
+    }
 }

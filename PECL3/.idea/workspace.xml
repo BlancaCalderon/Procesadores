@@ -9,6 +9,8 @@
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/artifacts/Procesadores_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Procesadores.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Dato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -16,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/lexico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/lexico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sintactico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/sintactico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Funcion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TablaSimbolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lexico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.java" afterDir="false" />
@@ -29,6 +32,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,7 +58,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/mfran/OneDrive/Escritorio/enviar/Procesadores/src",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
@@ -62,7 +72,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670080577735</updated>
-      <workItem from="1670080579108" duration="12054000" />
+      <workItem from="1670080579108" duration="12783000" />
+      <workItem from="1670409990872" duration="7036000" />
+      <workItem from="1671621006642" duration="6584000" />
     </task>
     <servers />
   </component>

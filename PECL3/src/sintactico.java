@@ -766,7 +766,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitSumrestoper(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitSumrestoper (this);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {

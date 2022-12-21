@@ -4,6 +4,7 @@ public class Funcion {
 
     private String identificador;               //nombre de la funcion
     private ArrayList<String> tipoArgumentos;   //lista de tipos de parametros
+    private String resultado;
 
     public Funcion(String identificador, ArrayList<String> tipoArgumentos) {
         this.identificador = identificador;
@@ -22,4 +23,11 @@ public class Funcion {
         return tipoArgumentos.size();
     }
 
+    public String getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
+    }
 }

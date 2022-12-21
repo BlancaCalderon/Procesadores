@@ -215,7 +215,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitSumrestoper(sintactico.SumrestoperContext ctx);
+	void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Exception;
 	/**
 	 * Enter a parse tree produced by the {@code funcion}
 	 * labeled alternative in {@link sintactico#expr}.

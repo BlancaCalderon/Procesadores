@@ -1,6 +1,6 @@
 function patata() {
-	let a = 1 - 2;
-	let b;
-	b = 5;
-	let b = "hola";
+	let a = 13;
+	let b = 20 + 10;
+	let f = true + 2;
+	let b = 17;
 };

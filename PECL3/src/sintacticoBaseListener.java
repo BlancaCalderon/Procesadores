@@ -226,7 +226,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSumrestoper(sintactico.SumrestoperContext ctx) { }
+	@Override public void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Exception { }
 	/**
 	 * {@inheritDoc}
 	 *

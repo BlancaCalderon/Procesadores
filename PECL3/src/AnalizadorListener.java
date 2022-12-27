@@ -1,26 +1,20 @@
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
 public class AnalizadorListener extends sintacticoBaseListener {
 
-    private int opcion;
-    private TablaSimbolos tablaSimbolos;
+    private int opcion, ambito;
+    private HashMap<Integer, TablaSimbolos> tablasDeSimbolos;
     private Stack<Dato> pila;
     private boolean esDeclaracion;
 
     public AnalizadorListener(int opcion) {
+        this.ambito = -1;
         this.opcion = opcion;
-        this.tablaSimbolos = new TablaSimbolos();
+        this.tablasDeSimbolos = new HashMap();
         this.pila = new Stack<>();
         esDeclaracion = false;
-    }
-
-    public void insertarElemento(Dato elem) {
-        pila.push(elem);
-    }
-
-    public Dato getElemento() {
-        return pila.pop();
     }
 
     private void mostrarMenu() {
@@ -33,7 +27,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 5. Parar la ejecucion""");
     }
 
-    public boolean stop() {
+    private boolean stop() {
         if (opcion == 2) {
             Scanner input = new Scanner(System.in);
             mostrarMenu();
@@ -41,10 +35,22 @@ public class AnalizadorListener extends sintacticoBaseListener {
         return true;
     }
 
+    private Dato getElemTabla(String id) throws Errores {
+        for (int i = 0; i < tablasDeSimbolos.size(); i++) {
+            if (tablasDeSimbolos.get(i).containsId(id)) {
+                if (!tablasDeSimbolos.get(i).getDato(id).getTipo().equals("null")) {
+                    return tablasDeSimbolos.get(i).getDato(id);
+                }
+                throw new Errores(11);
+            }
+        }
+        throw new Errores(10);
+    }
+
     @Override
     public void enterLetIdentificador(sintactico.LetIdentificadorContext ctx) {
         System.out.println("Voy a declarar");
-        tablaSimbolos.addElem(ctx.stop.getText(), new Dato());
+        tablasDeSimbolos.get(ambito).addElem(ctx.stop.getText(), new Dato());
     }
 
     @Override
@@ -60,18 +66,18 @@ public class AnalizadorListener extends sintacticoBaseListener {
         Dato valAux = pila.pop();
 
         if (esDeclaracion) {
-            tablaSimbolos.addElem(idAux, valAux);
+            tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
         }
         else {
-            if (!tablaSimbolos.containsId(idAux)) {
+            if (!tablasDeSimbolos.get(ambito).containsId(idAux)) {
                 System.out.println("Error: No has declarado la variable");
             }
-            if (valAux.getTipo() != tablaSimbolos.getTipo(idAux) && tablaSimbolos.getTipo(idAux) != "") {
+            if (valAux.getTipo() != tablasDeSimbolos.get(ambito).getTipo(idAux) && tablasDeSimbolos.get(ambito).getTipo(idAux) != "") {
                 System.out.println("Error: No se puede convertir el tipo " + valAux.getTipo() +
-                        " a " + tablaSimbolos.getTipo(idAux));
+                        " a " + tablasDeSimbolos.get(ambito).getTipo(idAux));
             }
             else {
-                tablaSimbolos.addElem(idAux, valAux);
+                tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
             }
         }
         esDeclaracion = false;
@@ -80,14 +86,19 @@ public class AnalizadorListener extends sintacticoBaseListener {
     @Override
     public void enterSumrestoper(sintactico.SumrestoperContext ctx) {
         System.out.println("Voy a sumar");
-        System.out.println(ctx.start);
-        System.out.println(ctx.stop);
     }
 
     @Override
-    public void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Exception {
+    public void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Errores {
         Dato b = pila.pop();
         Dato a = pila.pop();
+
+        if (b.getTipo().equals("var")) {
+            b = getElemTabla(b.getLexema());
+        }
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
         String resultado = "";
 
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
@@ -111,11 +122,12 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 resultado = a.getLexema() + b.getLexema();
             }
             else {
-                System.out.println("No se pueden restar cadenas");
+                throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION " + ctx.getChild(1).getText());
             }
         }
         else {
-            throw new Exception("No se puede realizar la operacion modulo y exponente para los tipos " + a.getTipo() + " " + b.getTipo());
+            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+
         }
 
         pila.push(new Dato(resultado));
@@ -125,14 +137,20 @@ public class AnalizadorListener extends sintacticoBaseListener {
     @Override
     public void enterMuldivoper(sintactico.MuldivoperContext ctx) {
         System.out.println("Voy a multiplicar");
-        System.out.println(ctx.start);
-        System.out.println(ctx.stop);
     }
 
-    @Override public void exitMuldivoper(sintactico.MuldivoperContext ctx) {
+    @Override
+    public void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Errores {
         String resultado = "";
         Dato b = pila.pop();
         Dato a = pila.pop();
+
+        if (b.getTipo().equals("var")) {
+            b = getElemTabla(b.getLexema());
+        }
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
 
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
             if (ctx.getChild(1).getText().equals("*")) {
@@ -151,7 +169,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            System.out.println("No se puede realizar la operacion modulo y exponente para los tipos " + a.getTipo() + " " + b.getTipo());
+            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
         }
 
         pila.push(new Dato(resultado));
@@ -160,14 +178,20 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override public void enterModexpoper(sintactico.ModexpoperContext ctx) {
         System.out.println("Voy a modular/exponenciar");
-        System.out.println(ctx.start);
-        System.out.println(ctx.stop);
     }
 
-    @Override public void exitModexpoper(sintactico.ModexpoperContext ctx) {
+    @Override public void exitModexpoper(sintactico.ModexpoperContext ctx) throws Errores{
         int resultado = 0;
         Dato b = pila.pop();
         Dato a = pila.pop();
+
+        if (b.getTipo().equals("var")) {
+            b = getElemTabla(b.getLexema());
+        }
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
+
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
             if (ctx.getChild(1).getText().equals("%")) {
                 resultado = Integer.parseInt(a.getLexema()) % Integer.parseInt(b.getLexema());
@@ -176,9 +200,118 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            System.out.println("No se puede realizar la operacion modulo y exponente para los tipos " + a.getTipo() + " " + b.getTipo());
+            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
         }
         pila.push(new Dato(String.valueOf(resultado)));
+        System.out.println(pila);
+    }
+
+    @Override
+    public void enterComparacionoper(sintactico.ComparacionoperContext ctx) {
+        System.out.println("Voy a comparar");
+    }
+
+    @Override
+    public void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores{
+        boolean resultado = false;
+        Dato b = pila.pop();
+        Dato a = pila.pop();
+
+        if (b.getTipo().equals("var")) {
+            b = getElemTabla(b.getLexema());
+        }
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
+
+        if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
+            String opcode = ctx.getChild(1).getText();
+            switch (opcode) {
+                case "<" -> resultado = Integer.parseInt(a.getLexema()) < Integer.parseInt(b.getLexema());
+
+                case "<=" -> resultado = Integer.parseInt(a.getLexema()) <= Integer.parseInt(b.getLexema());
+
+                case ">" -> resultado = Integer.parseInt(a.getLexema()) > Integer.parseInt(b.getLexema());
+
+                case ">=" -> resultado = Integer.parseInt(a.getLexema()) >= Integer.parseInt(b.getLexema());
+
+                case "==" -> resultado = Integer.parseInt(a.getLexema()) == Integer.parseInt(b.getLexema());
+
+                case "!=" -> resultado = Integer.parseInt(a.getLexema()) != Integer.parseInt(b.getLexema());
+
+                default -> throw new Errores(21, ctx.getChild(1).getText());
+            }
+        }
+        else {
+            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+        }
+        pila.push(new Dato(String.valueOf(resultado)));
+        System.out.println(pila);
+    }
+
+    @Override
+    public void enterBuclewhile(sintactico.BuclewhileContext ctx) {
+        System.out.println("Soy un bucle while");
+    }
+
+    @Override
+    public void exitBuclewhile(sintactico.BuclewhileContext ctx) {
+    }
+
+    @Override
+    public void enterCond(sintactico.CondContext ctx) {
+        System.out.println("Entro en una condición");
+    }
+
+    @Override
+    public void exitCond(sintactico.CondContext ctx) {
+    }
+
+    @Override
+    public void enterCuerpocondicion(sintactico.CuerpocondicionContext ctx) {
+        System.out.println(ctx.getChild(1).getText());
+    }
+
+    @Override
+    public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores{
+        Dato resCondicion = pila.pop();
+        if (resCondicion.getTipo().equals("boolean")) {
+            pila.push(resCondicion);
+        }
+        else {
+            throw new Errores(30);
+        }
+    }
+
+    @Override
+    public void enterBloque(sintactico.BloqueContext ctx) {
+        System.out.println("Voy a cambiar de ambito");
+        ambito++;
+        tablasDeSimbolos.put(ambito, new TablaSimbolos());
+    }
+
+    @Override
+    public void exitBloque(sintactico.BloqueContext ctx) {
+        System.out.println("TABLACONAMBITOS");
+        System.out.println(pila);
+        for (int i = 0; i <tablasDeSimbolos.size(); i++) {
+            System.out.println(tablasDeSimbolos.get(i));
+        }
+
+        for (int i = 0; i < tablasDeSimbolos.get(ambito).getTamTabla(); i++) {
+            pila.pop();
+        }
+
+        tablasDeSimbolos.remove(ambito);
+        ambito--;
+    }
+
+    @Override public void enterIdentificador(sintactico.IdentificadorContext ctx) {
+        System.out.println("Tengo una variable");
+    }
+
+    @Override public void exitIdentificador(sintactico.IdentificadorContext ctx) {
+        pila.push(new Dato(ctx.start.getText(), "var"));
         System.out.println(pila);
     }
 
@@ -218,6 +351,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitFunc(sintactico.FuncContext ctx) {
-        System.out.println(tablaSimbolos);
+        System.out.println(tablasDeSimbolos);
     }
 }

@@ -71,7 +71,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitMuldivoper(sintactico.MuldivoperContext ctx);
+	void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Exception;
 	/**
 	 * Enter a parse tree produced by the {@code bool}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -143,7 +143,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitModexpoper(sintactico.ModexpoperContext ctx);
+	void exitModexpoper(sintactico.ModexpoperContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code ide}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -167,7 +167,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitComparacionoper(sintactico.ComparacionoperContext ctx);
+	void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code parentesis}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -257,7 +257,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * Exit a parse tree produced by {@link sintactico#cuerpocondicion}.
 	 * @param ctx the parse tree
 	 */
-	void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx);
+	void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by {@link sintactico#bucle}.
 	 * @param ctx the parse tree

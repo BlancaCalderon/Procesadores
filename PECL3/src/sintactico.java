@@ -493,7 +493,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitMuldivoper(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitMuldivoper(this);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -622,7 +628,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitModexpoper(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitModexpoper(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -668,7 +680,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitComparacionoper(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitComparacionoper(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -1193,7 +1211,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitCuerpocondicion(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitCuerpocondicion(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {

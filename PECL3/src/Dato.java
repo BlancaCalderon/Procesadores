@@ -4,7 +4,8 @@ public class Dato {
     private String tipo;
 
     public Dato() {
-
+        this.lexema = "null";
+        this.tipo = "null";
     }
 
     public Dato(String lexema) {

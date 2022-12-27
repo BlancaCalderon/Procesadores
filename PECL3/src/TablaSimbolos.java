@@ -15,6 +15,10 @@ public class TablaSimbolos {
         tabla.put(id, dato);
     }
 
+    public Dato getDato(String id) {
+        return tabla.get(id);
+    }
+
     public String getValor(String id) {
         return tabla.get(id).getLexema();
     }
@@ -30,6 +34,10 @@ public class TablaSimbolos {
      */
     public String getTipo(String id) {
         return tabla.get(id).getTipo();
+    }
+
+    public int getTamTabla() {
+        return tabla.size();
     }
 
     public void setElem(String id, Dato dato) {

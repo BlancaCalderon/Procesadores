@@ -82,7 +82,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMuldivoper(sintactico.MuldivoperContext ctx) { }
+	@Override public void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Exception{ }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -154,7 +154,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitModexpoper(sintactico.ModexpoperContext ctx) { }
+	@Override public void exitModexpoper(sintactico.ModexpoperContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -178,7 +178,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparacionoper(sintactico.ComparacionoperContext ctx) { }
+	@Override public void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -274,7 +274,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) { }
+	@Override public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *

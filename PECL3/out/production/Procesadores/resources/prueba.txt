@@ -1,0 +1,13 @@
+function patata() {
+    let a = 1;
+    if (1 > 0) {
+        let b = 2;
+        let h = "hola";
+
+        if (1 > 0) {
+            let c = 3;
+            let v = "mundo";
+            let p = h + v;
+        };
+    };
+};

@@ -1,3 +1,5 @@
+import org.antlr.v4.runtime.RuleContext;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
@@ -326,11 +328,11 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterCuerpocondicion(sintactico.CuerpocondicionContext ctx) {
-        System.out.println(ctx.getChild(1).getText());
+        System.out.println("Voy a realizar una condicion");
     }
 
     @Override
-    public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores{
+    public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores {
         Dato resCondicion = pila.pop();
         if (resCondicion.getTipo().equals("boolean")) {
             pila.push(resCondicion);
@@ -345,6 +347,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
         System.out.println("Voy a cambiar de ambito");
         ambito++;
         tablasDeSimbolos.put(ambito, new TablaSimbolos());
+
+        //ctx.getChild(ctx.getChildCount() - 1).setParent((RuleContext) ctx.);
+        ctx.setParent((RuleContext) ctx.getChild(ctx.getChildCount() - 1));
     }
 
     @Override

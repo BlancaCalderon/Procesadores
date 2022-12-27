@@ -39,8 +39,6 @@ public class Errores extends Exception {
             case 22 -> System.out.println("No se puede hacer la " + args2 + " con el tipo: tipo1 " + args1);
             case 30 -> System.out.println("La condicion debe ser de tipo booleano");
         }
-
-
     }
 }
 

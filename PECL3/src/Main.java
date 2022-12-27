@@ -16,7 +16,7 @@ public class Main {
             System.out.println("Error número de argumentos incorrectos");
             return;
         }*/
-        
+        System.out.println("Hola soy Dani jeje");
         opcion = 1;//Integer.parseInt(args[1]);
         file = "./src/resources/prueba.txt";
 

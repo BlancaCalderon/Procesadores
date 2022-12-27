@@ -10,6 +10,7 @@ public class Main {
         String file;
         int opcion;
         System.out.println("hola");
+        System.out.println("Adios");
 
         /*if (args.length != 2) {
             System.out.println("Error número de argumentos incorrectos");

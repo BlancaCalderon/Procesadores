@@ -6,7 +6,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/lexico.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\Procesadores\src" />
+          <option name="outputDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\GITPdL\Procesadores\PECL3\src" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
@@ -16,8 +16,8 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/sintactico.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\Procesadores\src" />
-          <option name="libDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\Procesadores\src" />
+          <option name="outputDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\GITPdL\Procesadores\PECL3\src" />
+          <option name="libDir" value="C:\Users\mfran\OneDrive\Escritorio\enviar\GITPdL\Procesadores\PECL3\src" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />

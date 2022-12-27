@@ -157,7 +157,7 @@ public class sintacticoBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCond(sintactico.CondContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCondicion(sintactico.CondicionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -178,7 +178,7 @@ public class sintacticoBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBuclewhile(sintactico.BuclewhileContext ctx) { return visitChildren(ctx); }
+	@Override public T visitWhilebucle(sintactico.WhilebucleContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -241,7 +241,7 @@ public class sintacticoBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDev(sintactico.DevContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRetorno(sintactico.RetornoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

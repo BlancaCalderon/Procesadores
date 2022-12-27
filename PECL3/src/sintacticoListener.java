@@ -71,7 +71,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Exception;
+	void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code bool}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -203,7 +203,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogicooper(sintactico.LogicooperContext ctx) throws Exception;
+	void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code sumrestoper}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -215,7 +215,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Exception;
+	void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code funcion}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -239,15 +239,17 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitBloque(sintactico.BloqueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link sintactico#cond}.
+	 * Enter a parse tree produced by the {@code condicion}
+	 * labeled alternative in {@link sintactico#cond}.
 	 * @param ctx the parse tree
 	 */
-	void enterCond(sintactico.CondContext ctx);
+	void enterCondicion(sintactico.CondicionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link sintactico#cond}.
+	 * Exit a parse tree produced by the {@code condicion}
+	 * labeled alternative in {@link sintactico#cond}.
 	 * @param ctx the parse tree
 	 */
-	void exitCond(sintactico.CondContext ctx);
+	void exitCondicion(sintactico.CondicionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link sintactico#cuerpocondicion}.
 	 * @param ctx the parse tree
@@ -269,15 +271,17 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitBucle(sintactico.BucleContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link sintactico#buclewhile}.
+	 * Enter a parse tree produced by the {@code whilebucle}
+	 * labeled alternative in {@link sintactico#buclewhile}.
 	 * @param ctx the parse tree
 	 */
-	void enterBuclewhile(sintactico.BuclewhileContext ctx);
+	void enterWhilebucle(sintactico.WhilebucleContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link sintactico#buclewhile}.
+	 * Exit a parse tree produced by the {@code whilebucle}
+	 * labeled alternative in {@link sintactico#buclewhile}.
 	 * @param ctx the parse tree
 	 */
-	void exitBuclewhile(sintactico.BuclewhileContext ctx);
+	void exitWhilebucle(sintactico.WhilebucleContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link sintactico#llamadafuncion}.
 	 * @param ctx the parse tree
@@ -359,15 +363,17 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitParametro(sintactico.ParametroContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link sintactico#dev}.
+	 * Enter a parse tree produced by the {@code retorno}
+	 * labeled alternative in {@link sintactico#dev}.
 	 * @param ctx the parse tree
 	 */
-	void enterDev(sintactico.DevContext ctx);
+	void enterRetorno(sintactico.RetornoContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link sintactico#dev}.
+	 * Exit a parse tree produced by the {@code retorno}
+	 * labeled alternative in {@link sintactico#dev}.
 	 * @param ctx the parse tree
 	 */
-	void exitDev(sintactico.DevContext ctx);
+	void exitRetorno(sintactico.RetornoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link sintactico#opercomparacion}.
 	 * @param ctx the parse tree

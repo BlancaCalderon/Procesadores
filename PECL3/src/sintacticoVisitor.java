@@ -146,11 +146,12 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBloque(sintactico.BloqueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link sintactico#cond}.
+	 * Visit a parse tree produced by the {@code condicion}
+	 * labeled alternative in {@link sintactico#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCond(sintactico.CondContext ctx);
+	T visitCondicion(sintactico.CondicionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link sintactico#cuerpocondicion}.
 	 * @param ctx the parse tree
@@ -164,11 +165,12 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBucle(sintactico.BucleContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link sintactico#buclewhile}.
+	 * Visit a parse tree produced by the {@code whilebucle}
+	 * labeled alternative in {@link sintactico#buclewhile}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBuclewhile(sintactico.BuclewhileContext ctx);
+	T visitWhilebucle(sintactico.WhilebucleContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link sintactico#llamadafuncion}.
 	 * @param ctx the parse tree
@@ -218,11 +220,12 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParametro(sintactico.ParametroContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link sintactico#dev}.
+	 * Visit a parse tree produced by the {@code retorno}
+	 * labeled alternative in {@link sintactico#dev}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDev(sintactico.DevContext ctx);
+	T visitRetorno(sintactico.RetornoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link sintactico#opercomparacion}.
 	 * @param ctx the parse tree

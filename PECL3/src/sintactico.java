@@ -496,7 +496,7 @@ public class sintactico extends Parser {
 			if ( listener instanceof sintacticoListener ) {
 				try {
 					((sintacticoListener)listener).exitMuldivoper(this);
-				} catch (Exception e) {
+				} catch (Errores e) {
 					throw new RuntimeException(e);
 				}
 			}
@@ -767,7 +767,7 @@ public class sintactico extends Parser {
 			if ( listener instanceof sintacticoListener ) {
 				try {
 					((sintacticoListener)listener).exitLogicooper(this);
-				} catch (Exception e) {
+				} catch (Errores e) {
 					throw new RuntimeException(e);
 				}
 			}
@@ -798,8 +798,8 @@ public class sintactico extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof sintacticoListener ) {
 				try {
-					((sintacticoListener)listener).exitSumrestoper (this);
-				} catch (Exception e) {
+					((sintacticoListener)listener).exitSumrestoper(this);
+				} catch (Errores e) {
 					throw new RuntimeException(e);
 				}
 			}
@@ -1103,6 +1103,18 @@ public class sintactico extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class CondContext extends ParserRuleContext {
+		public CondContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_cond; }
+	 
+		public CondContext() { }
+		public void copyFrom(CondContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class CondicionContext extends CondContext {
 		public IfContext if_() {
 			return getRuleContext(IfContext.class,0);
 		}
@@ -1127,21 +1139,18 @@ public class sintactico extends Parser {
 		public ElseContext else_() {
 			return getRuleContext(ElseContext.class,0);
 		}
-		public CondContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_cond; }
+		public CondicionContext(CondContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterCond(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterCondicion(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitCond(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitCondicion(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitCond(this);
+			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitCondicion(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1151,6 +1160,7 @@ public class sintactico extends Parser {
 		enterRule(_localctx, 12, RULE_cond);
 		int _la;
 		try {
+			_localctx = new CondicionContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(212);
@@ -1310,6 +1320,18 @@ public class sintactico extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class BuclewhileContext extends ParserRuleContext {
+		public BuclewhileContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_buclewhile; }
+	 
+		public BuclewhileContext() { }
+		public void copyFrom(BuclewhileContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class WhilebucleContext extends BuclewhileContext {
 		public WhileContext while_() {
 			return getRuleContext(WhileContext.class,0);
 		}
@@ -1319,21 +1341,18 @@ public class sintactico extends Parser {
 		public BloqueContext bloque() {
 			return getRuleContext(BloqueContext.class,0);
 		}
-		public BuclewhileContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_buclewhile; }
+		public WhilebucleContext(BuclewhileContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterBuclewhile(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterWhilebucle(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitBuclewhile(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitWhilebucle(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitBuclewhile(this);
+			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitWhilebucle(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1342,6 +1361,7 @@ public class sintactico extends Parser {
 		BuclewhileContext _localctx = new BuclewhileContext(_ctx, getState());
 		enterRule(_localctx, 18, RULE_buclewhile);
 		try {
+			_localctx = new WhilebucleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(235);
@@ -1835,27 +1855,36 @@ public class sintactico extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class DevContext extends ParserRuleContext {
+		public DevContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_dev; }
+	 
+		public DevContext() { }
+		public void copyFrom(DevContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class RetornoContext extends DevContext {
 		public ReturnContext return_() {
 			return getRuleContext(ReturnContext.class,0);
 		}
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public DevContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_dev; }
+		public RetornoContext(DevContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterDev(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterRetorno(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitDev(this);
+			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitRetorno(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitDev(this);
+			if ( visitor instanceof sintacticoVisitor ) return ((sintacticoVisitor<? extends T>)visitor).visitRetorno(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1865,6 +1894,7 @@ public class sintactico extends Parser {
 		enterRule(_localctx, 36, RULE_dev);
 		int _la;
 		try {
+			_localctx = new RetornoContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(281);

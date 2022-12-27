@@ -35,12 +35,12 @@ expr:   pi expr pd                  #parentesis     |
 bloque: ci sentencia* cd;
 
 //Condicionales
-cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?;
+cond: if cuerpocondicion bloque (elseif cuerpocondicion bloque)* (else bloque)?     #condicion;
 cuerpocondicion: pi expr pd;
 
 //Bucles
 bucle: buclewhile;
-buclewhile: while cuerpocondicion bloque;
+buclewhile: while cuerpocondicion bloque        #whilebucle;
 
 //Llamada a funciones
 llamadafuncion: nombrefuncion cuerpoargumentos;
@@ -57,7 +57,7 @@ parametros: parametro (coma parametro)*;
 parametro: identificador;
 
 //Retorno de funciones
-dev: return expr?;
+dev: return expr?       #retorno;
 
 //Operadores
 opercomparacion: opermenorque | opermayorque | opermayorigualque | opermenorigualque | operiguala | operdistinto;

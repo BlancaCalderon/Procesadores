@@ -1,7 +1,10 @@
 function patata() {
     let a = 1;
     let b = 4;
-    if (a < 5) {
-        let b = "Patata";
+    if (3 > 2) {
+        let c = 9;
+    }
+    else {
+        let x = "2";
     };
 };

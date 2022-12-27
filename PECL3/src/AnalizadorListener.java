@@ -309,21 +309,17 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterBuclewhile(sintactico.BuclewhileContext ctx) {
-        System.out.println("Soy un bucle while");
+    public void enterCondicion(sintactico.CondicionContext ctx) {
+        System.out.println("Voy a condicionar");
+
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            System.out.println(ctx.getChild(i).getText());
+        }
     }
 
     @Override
-    public void exitBuclewhile(sintactico.BuclewhileContext ctx) {
-    }
+    public void exitCondicion(sintactico.CondicionContext ctx) {
 
-    @Override
-    public void enterCond(sintactico.CondContext ctx) {
-        System.out.println("Entro en una condición");
-    }
-
-    @Override
-    public void exitCond(sintactico.CondContext ctx) {
     }
 
     @Override
@@ -347,9 +343,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         System.out.println("Voy a cambiar de ambito");
         ambito++;
         tablasDeSimbolos.put(ambito, new TablaSimbolos());
-
-        //ctx.getChild(ctx.getChildCount() - 1).setParent((RuleContext) ctx.);
-        ctx.setParent((RuleContext) ctx.getChild(ctx.getChildCount() - 1));
     }
 
     @Override

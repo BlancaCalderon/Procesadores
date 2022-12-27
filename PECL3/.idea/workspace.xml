@@ -10,11 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sintactico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/sintactico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lexico.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.interp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/danim/Downloads/antlr-4.11.1-complete.jar",
+    "last_opened_file_path": "C:/Users/mfran/OneDrive/Escritorio/enviar/GITPdL/Procesadores/PECL3/src",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -67,6 +75,7 @@
       <workItem from="1671933256911" duration="508000" />
       <workItem from="1672136300435" duration="12776000" />
       <workItem from="1672149553635" duration="590000" />
+      <workItem from="1672163373524" duration="5038000" />
     </task>
     <servers />
   </component>

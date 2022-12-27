@@ -82,7 +82,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Exception{ }
+	@Override public void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -214,7 +214,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicooper(sintactico.LogicooperContext ctx) throws Exception { }
+	@Override public void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -226,7 +226,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Exception { }
+	@Override public void exitSumrestoper(sintactico.SumrestoperContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -256,13 +256,13 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCond(sintactico.CondContext ctx) { }
+	@Override public void enterCondicion(sintactico.CondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCond(sintactico.CondContext ctx) { }
+	@Override public void exitCondicion(sintactico.CondicionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -292,13 +292,13 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBuclewhile(sintactico.BuclewhileContext ctx) { }
+	@Override public void enterWhilebucle(sintactico.WhilebucleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBuclewhile(sintactico.BuclewhileContext ctx) { }
+	@Override public void exitWhilebucle(sintactico.WhilebucleContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -400,13 +400,13 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDev(sintactico.DevContext ctx) { }
+	@Override public void enterRetorno(sintactico.RetornoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDev(sintactico.DevContext ctx) { }
+	@Override public void exitRetorno(sintactico.RetornoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

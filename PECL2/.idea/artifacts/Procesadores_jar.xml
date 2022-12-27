@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Procesadores:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Procesadores_jar</output-path>
-    <root id="archive" name="Procesadores.jar">
-      <element id="module-output" name="Procesadores" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../../../Program Files/antlr/bin/antlr-4.11.1-complete.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>

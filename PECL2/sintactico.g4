@@ -1,5 +1,4 @@
 parser grammar sintactico;
-
 options {tokenVocab = lexico;}
 
 //Axioma
@@ -9,27 +8,26 @@ axioma: (func puntocoma)* EOF;
 sentencia: (decl | asig | expr | cond | bucle | dev | bloque) puntocoma;
 
 //Declaraciones
-decl:   let identificador        #letIdentificador  |
-        let asig                 #letAsignacion     ;
+decl: let (identificador | asig);
 
 //Asignaciones
 asig: identificador igual expr;
 
 //Expresiones
-expr:   pi expr pd                  #parentesis     |
-        expr opermodexp expr        #modexpoper     |
-        expr opermuldiv expr        #muldivoper     |
-        expr opersumrest expr       #sumrestoper    |
-        expr opercomparacion expr   #comparacionoper|
-        expr operlogico expr        #logicooper     |
-        operneg expr                #negacion       |
-        identificador               #ide            |
-        cadena                      #cad            |
-        booleano                    #bool           |
-        signonumerico               #signumerico    |
-        numerico                    #numeric        |
-        polinomio                   #poli           |
-        llamadafuncion              #funcion        ;
+expr:   pi expr pd                  |
+        expr opermodexp expr        |
+        expr opermuldiv expr        |
+        expr opersumrest expr       |
+        expr opercomparacion expr   |
+        expr operlogico expr        |
+        operneg expr                |
+        identificador               |
+        cadena                      |
+        booleano                    |
+        signonumerico               |
+        numerico                    |
+        polinomio                   |
+        llamadafuncion              ;
 
 //Bloque de código
 bloque: ci sentencia* cd;

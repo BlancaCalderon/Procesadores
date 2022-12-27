@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) {
         String file;
         int opcion;
+        System.out.println("hola");
 
         /*if (args.length != 2) {
             System.out.println("Error número de argumentos incorrectos");

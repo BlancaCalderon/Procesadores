@@ -9,15 +9,12 @@ public class Main {
     public static void main(String[] args) {
         String file;
         int opcion;
-        System.out.println("hola");
-        System.out.println("Adios");
-        System.out.println("Segundo intento");
 
         /*if (args.length != 2) {
             System.out.println("Error número de argumentos incorrectos");
             return;
         }*/
-        System.out.println("Hola soy Dani jeje");
+
         opcion = 1;//Integer.parseInt(args[1]);
         file = "./src/resources/prueba.txt";
 

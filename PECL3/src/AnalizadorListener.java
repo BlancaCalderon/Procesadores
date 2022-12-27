@@ -212,7 +212,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores{
+    public void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores {
         boolean resultado = false;
         Dato b = pila.pop();
         Dato a = pila.pop();
@@ -244,6 +244,63 @@ public class AnalizadorListener extends sintacticoBaseListener {
         }
         else {
             throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+        }
+        pila.push(new Dato(String.valueOf(resultado)));
+        System.out.println(pila);
+    }
+
+    @Override public void enterLogicooper(sintactico.LogicooperContext ctx) {
+        System.out.println("Voy a comparar lógicamente");
+    }
+
+    @Override public void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores {
+        boolean resultado = false;
+        Dato b = pila.pop();
+        Dato a = pila.pop();
+
+        if (b.getTipo().equals("var")) {
+            b = getElemTabla(b.getLexema());
+        }
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
+
+        if (a.getTipo().equals("boolean") && b.getTipo().equals("boolean")) {
+            String opcode = ctx.getChild(1).getText();
+            switch (opcode) {
+                case "&&" -> resultado = Boolean.parseBoolean(a.getLexema()) && Boolean.parseBoolean(b.getLexema());
+
+                case "||" -> resultado = Boolean.parseBoolean(a.getLexema()) || Boolean.parseBoolean(b.getLexema());
+
+                case "##" -> resultado = Boolean.parseBoolean(a.getLexema()) ^ Boolean.parseBoolean(b.getLexema());
+
+                default -> throw new Errores(21, ctx.getChild(1).getText());
+            }
+        }
+        else {
+            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+        }
+        pila.push(new Dato(String.valueOf(resultado)));
+        System.out.println(pila);
+    }
+
+    @Override public void enterNegacion(sintactico.NegacionContext ctx) {
+        System.out.println("Voy a negar");
+    }
+
+    @Override public void exitNegacion(sintactico.NegacionContext ctx) throws Errores {
+        boolean resultado = false;
+        Dato a = pila.pop();
+
+        if (a.getTipo().equals("var")) {
+            a = getElemTabla(a.getLexema());
+        }
+
+        if (a.getTipo().equals("boolean")) {
+            resultado = !Boolean.parseBoolean(a.getLexema());
+        }
+        else {
+            throw new Errores(22, a.getTipo(), "OPERACION '" + ctx.getChild(0).getText() + "'");
         }
         pila.push(new Dato(String.valueOf(resultado)));
         System.out.println(pila);

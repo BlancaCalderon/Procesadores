@@ -36,6 +36,7 @@ public class Errores extends Exception {
             case 11 -> System.out.println("La variable no esta inicializada");
             case 20 -> System.out.println("No se puede hacer la " + args3 + " con los tipos: tipo1 " + args1 + " y tipo 2 " + args2);
             case 21 -> System.out.println("El operador " + args1 + " introducido no existe");
+            case 22 -> System.out.println("No se puede hacer la " + args2 + " con el tipo: tipo1 " + args1);
             case 30 -> System.out.println("La condicion debe ser de tipo booleano");
         }
 

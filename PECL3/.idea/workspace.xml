@@ -10,8 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
-<<<<<<< HEAD
-=======
       <change afterPath="$PROJECT_DIR$/.idea/artifacts/Procesadores_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Procesadores.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Dato.java" afterDir="false" />
@@ -21,19 +19,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/lexico.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sintactico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/sintactico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Funcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Funcion.java" afterDir="false" />
->>>>>>> 3b58273c4547eb0e30b6c0168804d54519a9289a
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TablaSimbolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lexico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +41,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

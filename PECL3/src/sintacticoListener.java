@@ -119,7 +119,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitNegacion(sintactico.NegacionContext ctx);
+	void exitNegacion(sintactico.NegacionContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code numeric}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -203,7 +203,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogicooper(sintactico.LogicooperContext ctx);
+	void exitLogicooper(sintactico.LogicooperContext ctx) throws Exception;
 	/**
 	 * Enter a parse tree produced by the {@code sumrestoper}
 	 * labeled alternative in {@link sintactico#expr}.

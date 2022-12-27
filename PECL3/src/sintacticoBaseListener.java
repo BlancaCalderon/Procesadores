@@ -130,7 +130,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNegacion(sintactico.NegacionContext ctx) { }
+	@Override public void exitNegacion(sintactico.NegacionContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -214,7 +214,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicooper(sintactico.LogicooperContext ctx) { }
+	@Override public void exitLogicooper(sintactico.LogicooperContext ctx) throws Exception { }
 	/**
 	 * {@inheritDoc}
 	 *

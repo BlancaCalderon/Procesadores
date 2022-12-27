@@ -1,35 +1,30 @@
 import java.util.HashMap;
 
-public class TablaSimbolo {
+public class TablaSimbolos {
 
     //Tabla de simbolos --> identificador{valor, tipo}
-    private HashMap<String, HashMap<String, String>> tabla;
+    private HashMap<String, Dato> tabla;
     private HashMap<String, Funcion> tablaFunciones;
 
-    public TablaSimbolo() {
+    public TablaSimbolos() {
+        tabla = new HashMap<>();
+        tablaFunciones = new HashMap<>();
     }
 
-    /**
-     * Metodo que introduce un elemento en la tabla
-     * @param id
-     * @param valor
-     * @param tipo
-     */
-    public void addElem(String id, String valor, String tipo) {
-        HashMap<String, String> datos = new HashMap<>();
-        datos.put("valor", valor);
-        datos.put("tipo", tipo);
-
-        tabla.put(id, datos);
+    public void addElem(String id, Dato dato) {
+        tabla.put(id, dato);
     }
 
-    /**
-     * Metodo que obtiene el valor de identificador
-     * @param id
-     * @return
-     */
+    public Dato getDato(String id) {
+        return tabla.get(id);
+    }
+
     public String getValor(String id) {
-        return tabla.get(id).get("valor");
+        return tabla.get(id).getLexema();
+    }
+
+    public boolean containsId(String id) {
+        return tabla.containsKey(id);
     }
 
     /**
@@ -38,18 +33,16 @@ public class TablaSimbolo {
      * @return
      */
     public String getTipo(String id) {
-        return tabla.get(id).get("tipo");
+        return tabla.get(id).getTipo();
     }
 
-    /**
-     * Metodo que modifica el valor de un identificador
-     * @param id
-     * @param valor
-     * @param tipo
-     */
-    public void setElem(String id, String valor, String tipo) {
-        if (getTipo(id).equals(tipo)) {
-            addElem(id, valor, tipo);
+    public int getTamTabla() {
+        return tabla.size();
+    }
+
+    public void setElem(String id, Dato dato) {
+        if (getTipo(id).equals(dato.getTipo())) {
+            addElem(id, dato);
         }
         else {
             System.out.println("Tipo no valido");
@@ -90,4 +83,11 @@ public class TablaSimbolo {
         tablaFunciones.remove(id);
     }
 
+    @Override
+    public String toString() {
+        return "TablaSimbolos{" +
+                "tabla=" + tabla +
+                ", tablaFunciones=" + tablaFunciones +
+                '}';
+    }
 }

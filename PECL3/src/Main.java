@@ -29,8 +29,8 @@ public class Main {
                 CommonTokenStream tokens = new CommonTokenStream(lexer);
                 sintactico parser = new sintactico(tokens);
                 parser.setBuildParseTree(true);
-                ParseTree tree = parser.axioma();
 
+                ParseTree tree = parser.axioma();
                 AnalizadorListener listener = new AnalizadorListener(opcion);
                 ParseTreeWalker caminante = new ParseTreeWalker();
 

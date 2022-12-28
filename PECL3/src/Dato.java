@@ -40,6 +40,9 @@ public class Dato {
                 if (variable.equals("true") || variable.equals("false")) {
                     return "boolean";
                 }
+                else if (variable.charAt(0) == '\'' && variable.charAt(variable.length() - 1) == '\'') {
+                    return "polinomio";
+                }
                 else {
                     return "String";
                 }

@@ -251,11 +251,13 @@ public class AnalizadorListener extends sintacticoBaseListener {
         System.out.println(pila);
     }
 
-    @Override public void enterLogicooper(sintactico.LogicooperContext ctx) {
+    @Override
+    public void enterLogicooper(sintactico.LogicooperContext ctx) {
         System.out.println("Voy a comparar lógicamente");
     }
 
-    @Override public void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores {
+    @Override
+    public void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores {
         boolean resultado = false;
         Dato b = pila.pop();
         Dato a = pila.pop();
@@ -286,11 +288,13 @@ public class AnalizadorListener extends sintacticoBaseListener {
         System.out.println(pila);
     }
 
-    @Override public void enterNegacion(sintactico.NegacionContext ctx) {
+    @Override
+    public void enterNegacion(sintactico.NegacionContext ctx) {
         System.out.println("Voy a negar");
     }
 
-    @Override public void exitNegacion(sintactico.NegacionContext ctx) throws Errores {
+    @Override
+    public void exitNegacion(sintactico.NegacionContext ctx) throws Errores {
         boolean resultado = false;
         Dato a = pila.pop();
 
@@ -312,9 +316,18 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void enterCondicion(sintactico.CondicionContext ctx) {
         System.out.println("Voy a condicionar");
 
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            System.out.println(ctx.getChild(i).getText());
+        
+
+        boolean encontrado = false;
+        int hijo = 0;
+        for (int i = 0; i < ctx.children.size() && !encontrado; i++) {
+            if (ctx.getChild(i).getText().charAt(0) == '{') {
+                encontrado = true;
+                hijo = i;
+            }
         }
+
+        ctx.children.remove(hijo);
     }
 
     @Override
@@ -405,7 +418,24 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
+    public void enterPoli(sintactico.PoliContext ctx) {
+        System.out.println("Tengo un polinomio");
+    }
+
+    @Override
+    public void exitPoli(sintactico.PoliContext ctx) {
+        pila.push(new Dato(ctx.getText()));
+        System.out.println(pila);
+    }
+
+    @Override
+    public void enterFunc(sintactico.FuncContext ctx) {
+        System.out.println("Tengo una función");
+
+    }
+
+    @Override
     public void exitFunc(sintactico.FuncContext ctx) {
-        System.out.println(tablasDeSimbolos);
+
     }
 }

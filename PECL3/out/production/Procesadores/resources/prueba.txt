@@ -1,11 +1,7 @@
-function patata(a, b) {
-    if (3<5) {
-        let f = 8;
+function patata2(a, b) {
+    let c = 1;
+};
 
-        if (4<5) {
-            let funciona = 56;
-        };
-    };
-
-    let pata = 2;
+function patata() {
+    let a = 2;
 };

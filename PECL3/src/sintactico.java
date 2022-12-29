@@ -429,7 +429,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitAsig(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitAsig(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
@@ -660,7 +666,13 @@ public class sintactico extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).exitIde(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).exitIde(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {

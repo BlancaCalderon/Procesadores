@@ -1,33 +1,44 @@
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import java.util.ArrayList;
 
 public class Funcion {
 
     private String identificador;               //nombre de la funcion
-    private ArrayList<String> tipoArgumentos;   //lista de tipos de parametros
-    private String resultado;
+    private ArrayList<String> idArgumentos;     //lista de tipos de parametros
+    private ParseTree raiz;
 
-    public Funcion(String identificador, ArrayList<String> tipoArgumentos) {
+    public Funcion(String identificador, ArrayList<String> idArgumentos, ParseTree raiz) {
         this.identificador = identificador;
-        this.tipoArgumentos = tipoArgumentos;
+        this.idArgumentos = idArgumentos;
     }
 
     public String getIdentificador() {
         return identificador;
     }
 
-    public ArrayList<String> getTipoArgumentos() {
-        return tipoArgumentos;
+    public ArrayList<String> getIdArgumentos() {
+        return idArgumentos;
     }
 
     public int getNumArgumentos() {
-        return tipoArgumentos.size();
+        return idArgumentos.size();
     }
 
-    public String getResultado() {
-        return resultado;
+    public ParseTree getRaiz() {
+        return raiz;
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
+    public void setRaiz(ParseTree raiz) {
+        this.raiz = raiz;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcion{" +
+                "identificador='" + identificador + '\'' +
+                ", idArgumentos=" + idArgumentos +
+                ", raiz=" + raiz +
+                '}';
     }
 }

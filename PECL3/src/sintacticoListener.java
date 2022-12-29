@@ -59,7 +59,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * Exit a parse tree produced by {@link sintactico#asig}.
 	 * @param ctx the parse tree
 	 */
-	void exitAsig(sintactico.AsigContext ctx);
+	void exitAsig(sintactico.AsigContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code muldivoper}
 	 * labeled alternative in {@link sintactico#expr}.
@@ -155,7 +155,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitIde(sintactico.IdeContext ctx);
+	void exitIde(sintactico.IdeContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by the {@code comparacionoper}
 	 * labeled alternative in {@link sintactico#expr}.

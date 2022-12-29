@@ -38,7 +38,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     private Dato getElemTabla(String id) throws Errores {
-        for (int i = 0; i < tablasDeSimbolos.size(); i++) {
+        for (int i = tablasDeSimbolos.size() - 1; i >= 0; i--) {
             if (tablasDeSimbolos.get(i).containsId(id)) {
                 if (!tablasDeSimbolos.get(i).getDato(id).getTipo().equals("null")) {
                     return tablasDeSimbolos.get(i).getDato(id);
@@ -62,16 +62,32 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void exitAsig(sintactico.AsigContext ctx) {
+    public void exitAsig(sintactico.AsigContext ctx) throws Errores{
         System.out.println("Voy a realizar una asignacion");
         String idAux = ctx.start.getText();
         Dato valAux = pila.pop();
+        boolean encontrado = false;
 
         if (esDeclaracion) {
             tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
         }
         else {
-            if (!tablasDeSimbolos.get(ambito).containsId(idAux)) {
+            for (int i = tablasDeSimbolos.size() - 1; i >= 0; i--) {
+                if (tablasDeSimbolos.get(i).containsId(idAux)) {
+                    if (valAux.getTipo() != tablasDeSimbolos.get(i).getTipo(idAux) && tablasDeSimbolos.get(i).getTipo(idAux) != "null") {
+                        throw new Errores(12,  valAux.getTipo(), tablasDeSimbolos.get(i).getTipo(idAux));
+                    }
+                    else {
+                        tablasDeSimbolos.get(i).addElem(idAux, valAux);
+                        encontrado = true;
+                    }
+                }
+            }
+
+            if (!encontrado) {
+                throw new Errores(10);
+            }
+            /*if (!tablasDeSimbolos.get(ambito).containsId(idAux)) {
                 System.out.println("Error: No has declarado la variable");
             }
             if (valAux.getTipo() != tablasDeSimbolos.get(ambito).getTipo(idAux) && tablasDeSimbolos.get(ambito).getTipo(idAux) != "") {
@@ -80,7 +96,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
             else {
                 tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
-            }
+            }*/
         }
         esDeclaracion = false;
     }
@@ -316,8 +332,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void enterCondicion(sintactico.CondicionContext ctx) {
         System.out.println("Voy a condicionar");
 
-        
-
         boolean encontrado = false;
         int hijo = 0;
         for (int i = 0; i < ctx.children.size() && !encontrado; i++) {
@@ -328,6 +342,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         }
 
         ctx.children.remove(hijo);
+
     }
 
     @Override
@@ -366,30 +381,22 @@ public class AnalizadorListener extends sintacticoBaseListener {
             System.out.println(tablasDeSimbolos.get(i));
         }
 
-        for (int i = 0; i < tablasDeSimbolos.get(ambito).getTamTabla(); i++) {
-            pila.pop();
-        }
-
         tablasDeSimbolos.remove(ambito);
         ambito--;
     }
 
-    @Override public void enterIdentificador(sintactico.IdentificadorContext ctx) {
-        System.out.println("Tengo una variable");
-    }
-
-    @Override public void exitIdentificador(sintactico.IdentificadorContext ctx) {
-        pila.push(new Dato(ctx.start.getText(), "var"));
-        System.out.println(pila);
+    @Override
+    public void exitIde(sintactico.IdeContext ctx) throws Errores {
+        pila.push(getElemTabla(ctx.getText()));
     }
 
     @Override
-    public void enterNumerico(sintactico.NumericoContext ctx) {
-        System.out.println("Tengo un numero ");
+    public void enterNumeric(sintactico.NumericContext ctx) {
+        System.out.println("Tengo un numerico ");
     }
 
     @Override
-    public void exitNumerico(sintactico.NumericoContext ctx) {
+    public void exitNumeric(sintactico.NumericContext ctx) {
         pila.push(new Dato(ctx.start.getText()));
         System.out.println(pila);
     }
@@ -424,6 +431,18 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitPoli(sintactico.PoliContext ctx) {
+        pila.push(new Dato(ctx.getText()));
+        System.out.println(pila);
+    }
+
+    @Override
+    public void enterRetorno(sintactico.RetornoContext ctx) {
+        System.out.println("Voy a devolverme");
+    }
+
+    @Override
+    public void exitRetorno(sintactico.RetornoContext ctx) {
+        System.out.println(ctx.children);
         pila.push(new Dato(ctx.getText()));
         System.out.println(pila);
     }

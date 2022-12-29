@@ -70,7 +70,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAsig(sintactico.AsigContext ctx) { }
+	@Override public void exitAsig(sintactico.AsigContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -166,7 +166,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIde(sintactico.IdeContext ctx) { }
+	@Override public void exitIde(sintactico.IdeContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *

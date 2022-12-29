@@ -2,6 +2,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -30,11 +32,19 @@ public class Main {
                 sintactico parser = new sintactico(tokens);
                 parser.setBuildParseTree(true);
 
+                //Error
                 ParseTree tree = parser.axioma();
+
+                HashMap<String, Funcion> tablaFunciones = new HashMap<>();
+                AnalizadorVisitor visitor = new AnalizadorVisitor(tablaFunciones);
+                visitor.visit(tree);
+                System.out.println(tablaFunciones.toString());
+
                 AnalizadorListener listener = new AnalizadorListener(opcion);
+
                 ParseTreeWalker caminante = new ParseTreeWalker();
 
-                caminante.walk(listener, tree);
+                //caminante.walk(listener, tree);
             }
             else {
                 System.out.println("Opcion incorrecta");
@@ -45,6 +55,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Fin del programa por error");
         }
     }

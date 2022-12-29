@@ -10,11 +10,105 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AnalizadorVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/AnalizadorListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/AnalizadorListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Dato.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Dato.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Errores.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Errores.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Funcion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Funcion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/resources/prueba.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ArgumentoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ArgumentoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ArgumentosContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ArgumentosContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$AsigContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$AsigContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BloqueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BloqueContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BoolContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BoolContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BooleanoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BooleanoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BucleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BucleContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BuclewhileContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$BuclewhileContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CadContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CadContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CadenaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CadenaContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CdContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CdContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CiContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CiContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComaContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComillasimpleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComillasimpleContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComparacionoperContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ComparacionoperContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CondContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CondContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CondicionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CondicionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpoargumentosContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpoargumentosContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpocondicionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpocondicionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpofuncionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$CuerpofuncionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$DevContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$DevContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ElseContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ElseContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ElseifContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ElseifContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ExprContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FuncContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FuncContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FuncionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FuncionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FunctionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$FunctionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IdeContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IdeContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IdentificadorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IdentificadorContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IfContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IfContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IgualContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$IgualContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LetContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LetContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LetraContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LetraContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LlamadafuncionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LlamadafuncionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LogicooperContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$LogicooperContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ModexpoperContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ModexpoperContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$MonomioContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$MonomioContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$MuldivoperContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$MuldivoperContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NegacionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NegacionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NombrefuncionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NombrefuncionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NumericContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NumericContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NumericoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$NumericoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperandContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperandContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpercomparacionContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpercomparacionContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperdistintoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperdistintoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperdivContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperdivContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperexpContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperexpContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperigualaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperigualaContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperlogicoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperlogicoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermayorigualqueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermayorigualqueContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermayorqueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermayorqueContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermenorigualqueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermenorigualqueContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermenorqueContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermenorqueContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermodContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermodContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermodexpContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermodexpContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermulContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermulContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermuldivContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpermuldivContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpernegContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpernegContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperorContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperrestContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperrestContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpersumContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpersumContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpersumrestContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OpersumrestContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperxorContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$OperxorContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParametroContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParametroContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParametrosContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParametrosContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParentesisContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ParentesisContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PdContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PdContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PiContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PiContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PoliContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PoliContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PolinomioContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PolinomioContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PuntocomaContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$PuntocomaContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$RetornoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$RetornoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ReturnContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$ReturnContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SignonumericoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SignonumericoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SignumericoContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SignumericoContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SumrestoperContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$SumrestoperContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$WhileContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$WhileContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico$WhilebucleContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico$WhilebucleContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintactico.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintactico.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintacticoBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintacticoBaseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/sintacticoListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/sintacticoListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Funcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +163,7 @@
       <workItem from="1672149553635" duration="590000" />
       <workItem from="1672163373524" duration="5144000" />
       <workItem from="1672226018322" duration="706000" />
+      <workItem from="1672311792080" duration="12753000" />
     </task>
     <servers />
   </component>
@@ -85,6 +180,17 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/sintactico.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

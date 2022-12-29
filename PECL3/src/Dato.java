@@ -41,6 +41,7 @@ public class Dato {
                     return "boolean";
                 }
                 else if (variable.charAt(0) == '\'' && variable.charAt(variable.length() - 1) == '\'') {
+                    lexema = lexema.substring(1, lexema.length() - 1);
                     return "polinomio";
                 }
                 else {

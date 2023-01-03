@@ -1,4 +1,5 @@
 import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,11 +11,13 @@ public class AnalizadorListener extends sintacticoBaseListener {
     private HashMap<Integer, TablaSimbolos> tablasDeSimbolos;
     private Stack<Dato> pila;
     private boolean esDeclaracion;
+    private int nArgs;
 
-    public AnalizadorListener(int opcion) {
+    public AnalizadorListener(int opcion, TablaSimbolos tablaSimbolos) {
         this.ambito = -1;
         this.opcion = opcion;
-        this.tablasDeSimbolos = new HashMap();
+        this.tablasDeSimbolos = new HashMap<Integer, TablaSimbolos>();
+        this.tablasDeSimbolos.put(0, tablaSimbolos);
         this.pila = new Stack<>();
         esDeclaracion = false;
     }
@@ -69,6 +72,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         boolean encontrado = false;
 
         if (esDeclaracion) {
+            System.out.println(ambito);
             tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
         }
         else {
@@ -87,16 +91,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
             if (!encontrado) {
                 throw new Errores(10);
             }
-            /*if (!tablasDeSimbolos.get(ambito).containsId(idAux)) {
-                System.out.println("Error: No has declarado la variable");
-            }
-            if (valAux.getTipo() != tablasDeSimbolos.get(ambito).getTipo(idAux) && tablasDeSimbolos.get(ambito).getTipo(idAux) != "") {
-                System.out.println("Error: No se puede convertir el tipo " + valAux.getTipo() +
-                        " a " + tablasDeSimbolos.get(ambito).getTipo(idAux));
-            }
-            else {
-                tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
-            }*/
         }
         esDeclaracion = false;
     }
@@ -370,7 +364,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void enterBloque(sintactico.BloqueContext ctx) {
         System.out.println("Voy a cambiar de ambito");
         ambito++;
-        tablasDeSimbolos.put(ambito, new TablaSimbolos());
+        if (ambito != 0) {
+            tablasDeSimbolos.put(ambito, new TablaSimbolos());
+        }
     }
 
     @Override
@@ -383,6 +379,46 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
         tablasDeSimbolos.remove(ambito);
         ambito--;
+    }
+
+    @Override
+    public void enterFuncion(sintactico.FuncionContext ctx) {
+        System.out.println("Voy a llamar");
+    }
+
+    @Override
+    public void exitFuncion(sintactico.FuncionContext ctx) throws Errores {
+        System.out.println(ctx.start.getText());
+        Funcion func = tablasDeSimbolos.get(0).getFuncion(ctx.start.getText());
+        if (func == null) {
+            throw new Errores(40, ctx.start.getText());
+        }
+        int argsAux = func.getNumArgumentos();
+        if (argsAux != nArgs) {
+            throw new Errores(41, String.valueOf(pila.size()), String.valueOf(argsAux));
+        }
+
+        HashMap<String, Dato> tablaAux = new HashMap<>();
+        for (int i = argsAux - 1; i >= 0; i--) {
+            tablaAux.put(func.getIdArgumentos().get(i), pila.pop());
+        }
+        TablaSimbolos tablaSimbolos = new TablaSimbolos(tablaAux, tablasDeSimbolos.get(0).getTablaFunciones());
+
+        AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
+        ParseTreeWalker caminante = new ParseTreeWalker();
+        caminante.walk(listener, func.getRaiz());
+
+        pila.push(tablaSimbolos.getRetorno());
+    }
+
+    @Override
+    public void enterCuerpoargumentos(sintactico.CuerpoargumentosContext ctx) {
+        nArgs = 0;
+    }
+
+    @Override
+    public void exitArgumento(sintactico.ArgumentoContext ctx) {
+        nArgs++;
     }
 
     @Override
@@ -442,9 +478,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitRetorno(sintactico.RetornoContext ctx) {
-        System.out.println(ctx.children);
-        pila.push(new Dato(ctx.getText()));
-        System.out.println(pila);
+        if (!pila.empty()) {
+            tablasDeSimbolos.get(0).setRetorno(pila.pop());
+        }
     }
 
     @Override

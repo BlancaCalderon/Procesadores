@@ -11,6 +11,7 @@ public class Funcion {
     public Funcion(String identificador, ArrayList<String> idArgumentos, ParseTree raiz) {
         this.identificador = identificador;
         this.idArgumentos = idArgumentos;
+        this.raiz = raiz;
     }
 
     public String getIdentificador() {

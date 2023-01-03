@@ -238,7 +238,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFuncion(sintactico.FuncionContext ctx) { }
+	@Override public void exitFuncion(sintactico.FuncionContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *

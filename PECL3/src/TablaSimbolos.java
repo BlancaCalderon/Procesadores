@@ -5,10 +5,18 @@ public class TablaSimbolos {
     //Tabla de simbolos --> identificador{valor, tipo}
     private HashMap<String, Dato> tabla;
     private HashMap<String, Funcion> tablaFunciones;
+    private Dato retorno;
 
     public TablaSimbolos() {
         tabla = new HashMap<>();
         tablaFunciones = new HashMap<>();
+        retorno = null;
+    }
+
+    public TablaSimbolos(HashMap<String, Dato> tabla, HashMap<String, Funcion> tablaFunciones) {
+        this.tabla = tabla;
+        this.tablaFunciones = tablaFunciones;
+        this.retorno = null;
     }
 
     public void addElem(String id, Dato dato) {
@@ -21,6 +29,10 @@ public class TablaSimbolos {
 
     public String getValor(String id) {
         return tabla.get(id).getLexema();
+    }
+
+    public Dato getRetorno() {
+        return retorno;
     }
 
     public boolean containsId(String id) {
@@ -38,6 +50,14 @@ public class TablaSimbolos {
 
     public int getTamTabla() {
         return tabla.size();
+    }
+
+    public HashMap<String, Funcion> getTablaFunciones() {
+        return tablaFunciones;
+    }
+
+    public void setRetorno(Dato retorno) {
+        this.retorno = retorno;
     }
 
     public void setElem(String id, Dato dato) {

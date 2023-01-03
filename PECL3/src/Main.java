@@ -32,19 +32,22 @@ public class Main {
                 sintactico parser = new sintactico(tokens);
                 parser.setBuildParseTree(true);
 
-                //Error
                 ParseTree tree = parser.axioma();
-
                 HashMap<String, Funcion> tablaFunciones = new HashMap<>();
                 AnalizadorVisitor visitor = new AnalizadorVisitor(tablaFunciones);
                 visitor.visit(tree);
                 System.out.println(tablaFunciones.toString());
 
-                AnalizadorListener listener = new AnalizadorListener(opcion);
+                HashMap<String, Dato> tabla = new HashMap<>();
+                TablaSimbolos tablaSimbolos = new TablaSimbolos(tabla, tablaFunciones);
+                AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
 
                 ParseTreeWalker caminante = new ParseTreeWalker();
 
-                //caminante.walk(listener, tree);
+                String nombreFuncion = tree.getChild(tree.getChildCount() - 3).getChild(1).getText();
+                System.out.println(nombreFuncion);
+                Funcion funcRaiz = tablaFunciones.get(nombreFuncion);
+                caminante.walk(listener, funcRaiz.getRaiz());
             }
             else {
                 System.out.println("Opcion incorrecta");

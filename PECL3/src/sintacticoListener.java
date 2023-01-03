@@ -227,7 +227,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * labeled alternative in {@link sintactico#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitFuncion(sintactico.FuncionContext ctx);
+	void exitFuncion(sintactico.FuncionContext ctx) throws Errores;
 	/**
 	 * Enter a parse tree produced by {@link sintactico#bloque}.
 	 * @param ctx the parse tree

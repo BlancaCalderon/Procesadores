@@ -1,7 +1,12 @@
 function patata2(a, b) {
     let c = 1;
+
+    return a + b;
 };
 
 function patata() {
     let a = 2;
+
+        patata2(3, a);
+    7;
 };

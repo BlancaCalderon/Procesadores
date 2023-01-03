@@ -1,4 +1,5 @@
 import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     private int opcion, ambito;
     private HashMap<Integer, TablaSimbolos> tablasDeSimbolos;
     private Stack<Dato> pila;
+    private Stack<ParseTree> hijosReutilizables;
     private boolean esDeclaracion;
     private int nArgs;
 
@@ -19,6 +21,16 @@ public class AnalizadorListener extends sintacticoBaseListener {
         this.tablasDeSimbolos = new HashMap<Integer, TablaSimbolos>();
         this.tablasDeSimbolos.put(0, tablaSimbolos);
         this.pila = new Stack<>();
+        this.hijosReutilizables = new Stack<>();
+        esDeclaracion = false;
+    }
+
+    public AnalizadorListener(int opcion, int ambito, HashMap<Integer, TablaSimbolos> tablasDeSimbolos) {
+        this.ambito = ambito;
+        this.opcion = opcion;
+        this.tablasDeSimbolos = tablasDeSimbolos;
+        this.pila = new Stack<>();
+        this.hijosReutilizables = new Stack<>();
         esDeclaracion = false;
     }
 
@@ -325,23 +337,60 @@ public class AnalizadorListener extends sintacticoBaseListener {
     @Override
     public void enterCondicion(sintactico.CondicionContext ctx) {
         System.out.println("Voy a condicionar");
+        //No vamos a añadir los else
 
-        boolean encontrado = false;
-        int hijo = 0;
-        for (int i = 0; i < ctx.children.size() && !encontrado; i++) {
-            if (ctx.getChild(i).getText().charAt(0) == '{') {
-                encontrado = true;
-                hijo = i;
-            }
+        ParseTree condicion = ctx.getChild(1);
+        ParseTree bloque = ctx.getChild(2);
+        hijosReutilizables.push(bloque);
+        hijosReutilizables.push(condicion);
+        ctx.children.remove(1);
+        ctx.children.remove(1);
+
+        AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos);
+        ParseTreeWalker caminante = new ParseTreeWalker();
+        caminante.walk(listener, condicion);
+
+        if (tablasDeSimbolos.get(0).getRetorno().getLexema().equals("true")) {
+            caminante.walk(listener, bloque);
         }
-
-        ctx.children.remove(hijo);
-
     }
 
     @Override
     public void exitCondicion(sintactico.CondicionContext ctx) {
+        ctx.addChild((RuleContext) hijosReutilizables.pop());
+        ctx.addChild((RuleContext) hijosReutilizables.pop());
+    }
 
+    @Override
+    public void enterWhilebucle(sintactico.WhilebucleContext ctx) {
+        System.out.println("Voy a buclear");
+        boolean iterar = true;
+
+        ParseTree condicion = ctx.getChild(1);
+        ParseTree bloque = ctx.getChild(2);
+        hijosReutilizables.push(bloque);
+        hijosReutilizables.push(condicion);
+        ctx.children.remove(1);
+        ctx.children.remove(1);
+
+        while (iterar) {
+            AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos);
+            ParseTreeWalker caminante = new ParseTreeWalker();
+            caminante.walk(listener, condicion);
+
+            if (tablasDeSimbolos.get(0).getRetorno().getLexema().equals("true")) {
+                caminante.walk(listener, bloque);
+            }
+            else {
+                iterar = false;
+            }
+        }
+    }
+
+    @Override
+    public void exitWhilebucle(sintactico.WhilebucleContext ctx) {
+        ctx.addChild((RuleContext) hijosReutilizables.pop());
+        ctx.addChild((RuleContext) hijosReutilizables.pop());
     }
 
     @Override
@@ -353,7 +402,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores {
         Dato resCondicion = pila.pop();
         if (resCondicion.getTipo().equals("boolean")) {
-            pila.push(resCondicion);
+            tablasDeSimbolos.get(0).setRetorno(resCondicion);
         }
         else {
             throw new Errores(30);
@@ -398,17 +447,25 @@ public class AnalizadorListener extends sintacticoBaseListener {
             throw new Errores(41, String.valueOf(pila.size()), String.valueOf(argsAux));
         }
 
-        HashMap<String, Dato> tablaAux = new HashMap<>();
-        for (int i = argsAux - 1; i >= 0; i--) {
-            tablaAux.put(func.getIdArgumentos().get(i), pila.pop());
+        if (func.getIdentificador().equals("print")) {
+            System.out.println("VOY A DEPURAR <------------------------------------------------" + pila.pop().getLexema());
         }
-        TablaSimbolos tablaSimbolos = new TablaSimbolos(tablaAux, tablasDeSimbolos.get(0).getTablaFunciones());
+        else {
+            HashMap<String, Dato> tablaAux = new HashMap<>();
+            for (int i = argsAux - 1; i >= 0; i--) {
+                tablaAux.put(func.getIdArgumentos().get(i), pila.pop());
+            }
+            TablaSimbolos tablaSimbolos = new TablaSimbolos(tablaAux, tablasDeSimbolos.get(0).getTablaFunciones());
 
-        AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
-        ParseTreeWalker caminante = new ParseTreeWalker();
-        caminante.walk(listener, func.getRaiz());
+            AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
+            ParseTreeWalker caminante = new ParseTreeWalker();
+            caminante.walk(listener, func.getRaiz());
 
-        pila.push(tablaSimbolos.getRetorno());
+            pila.push(tablaSimbolos.getRetorno());
+            if (ctx.parent instanceof sintactico.SentenciaContext) {
+                pila.pop();
+            }
+        }
     }
 
     @Override

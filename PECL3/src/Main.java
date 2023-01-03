@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.antlr.v4.runtime.*;
@@ -36,6 +37,10 @@ public class Main {
                 HashMap<String, Funcion> tablaFunciones = new HashMap<>();
                 AnalizadorVisitor visitor = new AnalizadorVisitor(tablaFunciones);
                 visitor.visit(tree);
+
+                ArrayList<String> argumentos = new ArrayList<>();
+                argumentos.add("texto");
+                tablaFunciones.put("print", new Funcion("print", argumentos, null));
                 System.out.println(tablaFunciones.toString());
 
                 HashMap<String, Dato> tabla = new HashMap<>();

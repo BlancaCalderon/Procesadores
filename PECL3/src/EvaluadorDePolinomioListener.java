@@ -24,19 +24,25 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterLetra(sintactico.LetraContext ctx) {
-        System.out.println("Tengo una letra");
+    public void enterLetras(sintactico.LetrasContext ctx) {
+        System.out.println("Tengo letras");
     }
 
     @Override
-    public void exitLetra(sintactico.LetraContext ctx) {
-        float numericAux = tablaValores.get(ctx.getText().charAt(0));
+    public void exitLetras(sintactico.LetrasContext ctx) throws Errores{
+        float numericAux;
+        for (int i = 0; i < ctx.getText().length(); i++) {
+            if (!tablaValores.containsKey(ctx.getText().charAt(i))) {
+                throw new Errores(50, ctx.getText().substring(i, i+1));
+            }
+            numericAux = tablaValores.get(ctx.getText().charAt(i));
 
-        if (operacionMonomio == '*') {
-            pilaMonomio *= numericAux;
-        }
-        else {
-            pilaMonomio = (float) Math.pow(pilaMonomio, numericAux);
+            if (operacionMonomio == '*') {
+                pilaMonomio *= numericAux;
+            }
+            else {
+                pilaMonomio = (float) Math.pow(pilaMonomio, numericAux);
+            }
         }
     }
 

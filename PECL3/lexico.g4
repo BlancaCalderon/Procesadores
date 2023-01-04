@@ -68,5 +68,6 @@ BOOLEANO: 'true'|'false';
 COMILLASIMPLE: '\'';
 
 //Identificadores
+LETRAS: LETRA+;
 LETRA: [A-Z|a-z];
 VAR: (LETRA|'_')(LETRA|DIGITO|'_')*;

@@ -18,8 +18,10 @@ function fibonacci(n) {
 };
 
 function patata() {
-    let a = 'x^2 + x + 10 + 1y';
-    let b = 'x + 3';
+    let a = 'x^2 + x + 10 + xy';
+    let b = 3;
+    %%%x^2 + x + 10 + xy
+    %%%let b = 'x + 3';
 
-    let c = val(a, 'x', 2, 'y', 3);
+    let c = val(1, 'x', 1, 'y', 2, 4, 4);
 };

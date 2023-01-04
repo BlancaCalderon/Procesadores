@@ -535,6 +535,16 @@ public interface sintacticoListener extends ParseTreeListener {
 	 */
 	void exitLetra(sintactico.LetraContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link sintactico#letras}.
+	 * @param ctx the parse tree
+	 */
+	void enterLetras(sintactico.LetrasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link sintactico#letras}.
+	 * @param ctx the parse tree
+	 */
+	void exitLetras(sintactico.LetrasContext ctx) throws Errores;
+	/**
 	 * Enter a parse tree produced by {@link sintactico#identificador}.
 	 * @param ctx the parse tree
 	 */

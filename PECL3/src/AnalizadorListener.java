@@ -64,17 +64,29 @@ public class AnalizadorListener extends sintacticoBaseListener {
         throw new Errores(10);
     }
 
-    public void evaluarPolinomio() {
+    public void evaluarPolinomio() throws Errores {
         HashMap<Character, Float> tablaAux = new HashMap<>();
         Dato valor, id, polinomio, retorno = new Dato();
+
+        if (nArgs % 2 == 0) {
+            throw new Errores(52);
+        }
 
         for (int i = 1; i < nArgs; i += 2) {
             valor = pila.pop();
             id = pila.pop();
+
+            if (!valor.getTipo().equals("int") && !valor.getTipo().equals("float")) {
+                throw new Errores(51, id.getLexema());
+            }
             tablaAux.put(id.getLexema().charAt(0), Float.parseFloat(valor.getLexema()));
         }
 
         polinomio = pila.pop();
+
+        if (!polinomio.getTipo().equals("polinomio")) {
+            throw new Errores(53);
+        }
 
         EvaluadorDePolinomioListener listener = new EvaluadorDePolinomioListener(tablaAux, retorno);
         ParseTreeWalker caminante = new ParseTreeWalker();

@@ -68,7 +68,7 @@ opersumrest: opersum | operrest;
 
 //Polinomios
 polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
-monomio: (numerico letra+ | numerico | letra+) (operexp numerico)*;
+monomio: (numerico letras | numerico | letras) (operexp numerico)*;
 
 //Numéricos con signo
 signonumerico: pi opersumrest numerico pd;
@@ -85,8 +85,9 @@ return: RETURN;
 
 //Identificadores
 letra: LETRA;
-identificador: VAR | LETRA;
-nombrefuncion: VAR | LETRA;
+letras: LETRAS;
+identificador: VAR | LETRA | LETRAS;
+nombrefuncion: VAR | LETRA | LETRAS;
 
 //Operadores matemáticos
 opersum: SUM;

@@ -42,6 +42,10 @@ public class Errores extends Exception {
             case 30 -> System.out.println("La condicion debe ser de tipo booleano");
             case 40 -> System.out.println("La función " + args1 + " no existe");
             case 41 -> System.out.println("El número de argumentos es " + args1 + " y deberia de ser " + args2);
+            case 50 -> System.out.println("La funcion val necesita el valor del parametro '" + args1 + "'");
+            case 51 -> System.out.println("El valor de la variable '" + args1 + "' debe ser numerico");
+            case 52 -> System.out.println("La funcion val no tiene el numero parametros correcto");
+            case 53 -> System.out.println("La funcion val necesita un polinomio a evaluar");
         }
     }
 }

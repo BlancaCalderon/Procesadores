@@ -323,6 +323,12 @@ public interface sintacticoVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLetra(sintactico.LetraContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link sintactico#letras}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLetras(sintactico.LetrasContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link sintactico#identificador}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

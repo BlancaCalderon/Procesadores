@@ -19,7 +19,9 @@ function fibonacci(n) {
 
 function patata() {
     let a = 'x^2 + x + 10 + xy';
-    let b = 'x + 3';
+    let b = 3;
+    %%%x^2 + x + 10 + xy
+    %%%let b = 'x + 3';
 
-    let c = val(a, 'x', 2, 'y', 3);
+    print(val(a, 'x', 1, 'y', 2));
 };

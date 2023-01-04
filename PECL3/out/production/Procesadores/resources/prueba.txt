@@ -15,8 +15,11 @@ function fibonacci(n) {
         resultado = fibonacci(n - 1) + fibonacci(n - 2);
     };
     return resultado;
-}
+};
 
 function patata() {
-    fibonacci(10);
+    let a = 'x^2 + x + 10 + 1y';
+    let b = 'x + 3';
+
+    let c = val(a, 'x', 2, 'y', 3);
 };

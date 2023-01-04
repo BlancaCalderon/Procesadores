@@ -64,6 +64,25 @@ public class AnalizadorListener extends sintacticoBaseListener {
         throw new Errores(10);
     }
 
+    public void evaluarPolinomio() {
+        HashMap<Character, Float> tablaAux = new HashMap<>();
+        Dato valor, id, polinomio, retorno = new Dato();
+
+        for (int i = 1; i < nArgs; i += 2) {
+            valor = pila.pop();
+            id = pila.pop();
+            tablaAux.put(id.getLexema().charAt(0), Float.parseFloat(valor.getLexema()));
+        }
+
+        polinomio = pila.pop();
+
+        EvaluadorDePolinomioListener listener = new EvaluadorDePolinomioListener(tablaAux, retorno);
+        ParseTreeWalker caminante = new ParseTreeWalker();
+        caminante.walk(listener, polinomio.getArbol());
+
+        pila.push(retorno);
+    }
+
     @Override
     public void enterLetIdentificador(sintactico.LetIdentificadorContext ctx) {
         System.out.println("Voy a declarar");
@@ -442,6 +461,11 @@ public class AnalizadorListener extends sintacticoBaseListener {
         if (func == null) {
             throw new Errores(40, ctx.start.getText());
         }
+        if (func.getIdentificador().equals("val")) {
+            evaluarPolinomio();
+            return;
+        }
+
         int argsAux = func.getNumArgumentos();
         if (argsAux != nArgs) {
             throw new Errores(41, String.valueOf(pila.size()), String.valueOf(argsAux));
@@ -524,7 +548,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitPoli(sintactico.PoliContext ctx) {
-        pila.push(new Dato(ctx.getText()));
+        pila.push(new Dato(ctx));
         System.out.println(pila);
     }
 

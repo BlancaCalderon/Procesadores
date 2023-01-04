@@ -1,11 +1,20 @@
+import org.antlr.runtime.tree.ParseTree;
+
 public class Dato {
 
     private String lexema;
     private String tipo;
+    private sintactico.PoliContext arbol;
 
     public Dato() {
         this.lexema = "null";
         this.tipo = "null";
+    }
+
+    public Dato(sintactico.PoliContext arbol) {
+        this.lexema = arbol.getText().substring(1, arbol.getText().length() - 1);
+        this.arbol = arbol;
+        this.tipo = "polinomio";
     }
 
     public Dato(String lexema) {
@@ -26,6 +35,22 @@ public class Dato {
         return tipo;
     }
 
+    public sintactico.PoliContext getArbol() {
+        return arbol;
+    }
+
+    public void setLexema(String lexema) {
+        this.lexema = lexema;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setArbol(sintactico.PoliContext arbol) {
+        this.arbol = arbol;
+    }
+
     public  String caster(String variable) {
         try {
             Integer.parseInt(variable);
@@ -39,10 +64,6 @@ public class Dato {
             } catch (NumberFormatException nfe2) {
                 if (variable.equals("true") || variable.equals("false")) {
                     return "boolean";
-                }
-                else if (variable.charAt(0) == '\'' && variable.charAt(variable.length() - 1) == '\'') {
-                    lexema = lexema.substring(1, lexema.length() - 1);
-                    return "polinomio";
                 }
                 else {
                     return "String";

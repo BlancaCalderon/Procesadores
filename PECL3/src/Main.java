@@ -41,6 +41,7 @@ public class Main {
                 ArrayList<String> argumentos = new ArrayList<>();
                 argumentos.add("texto");
                 tablaFunciones.put("print", new Funcion("print", argumentos, null));
+                tablaFunciones.put("val", new Funcion("val", null, null));
                 System.out.println(tablaFunciones.toString());
 
                 HashMap<String, Dato> tabla = new HashMap<>();

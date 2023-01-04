@@ -11,9 +11,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
     private int opcion, ambito;
     private HashMap<Integer, TablaSimbolos> tablasDeSimbolos;
     private Stack<Dato> pila;
+    private Stack<Integer> pilaArgumentos;
     private Stack<ParseTree> hijosReutilizables;
     private boolean esDeclaracion;
-    private int nArgs;
 
     public AnalizadorListener(int opcion, TablaSimbolos tablaSimbolos) {
         this.ambito = -1;
@@ -21,6 +21,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         this.tablasDeSimbolos = new HashMap<Integer, TablaSimbolos>();
         this.tablasDeSimbolos.put(0, tablaSimbolos);
         this.pila = new Stack<>();
+        this.pilaArgumentos = new Stack<>();
         this.hijosReutilizables = new Stack<>();
         esDeclaracion = false;
     }
@@ -30,6 +31,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         this.opcion = opcion;
         this.tablasDeSimbolos = tablasDeSimbolos;
         this.pila = new Stack<>();
+        this.pilaArgumentos = new Stack<>();
         this.hijosReutilizables = new Stack<>();
         esDeclaracion = false;
     }
@@ -58,16 +60,16 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 if (!tablasDeSimbolos.get(i).getDato(id).getTipo().equals("null")) {
                     return tablasDeSimbolos.get(i).getDato(id);
                 }
-                throw new Errores(11);
+                throw new Errores(11, id);
             }
         }
-        throw new Errores(10);
+        throw new Errores(10, id);
     }
 
     public void evaluarPolinomio() throws Errores {
         HashMap<Character, Float> tablaAux = new HashMap<>();
         Dato valor, id, polinomio, retorno = new Dato();
-
+        int nArgs = pilaArgumentos.pop();
         if (nArgs % 2 == 0) {
             throw new Errores(52);
         }
@@ -132,7 +134,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
 
             if (!encontrado) {
-                throw new Errores(10);
+                throw new Errores(10, idAux);
             }
         }
         esDeclaracion = false;
@@ -478,6 +480,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
             return;
         }
 
+        int nArgs = pilaArgumentos.pop();
         int argsAux = func.getNumArgumentos();
         if (argsAux != nArgs) {
             throw new Errores(41, String.valueOf(pila.size()), String.valueOf(argsAux));
@@ -506,12 +509,12 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterCuerpoargumentos(sintactico.CuerpoargumentosContext ctx) {
-        nArgs = 0;
+        pilaArgumentos.push(0);
     }
 
     @Override
     public void exitArgumento(sintactico.ArgumentoContext ctx) {
-        nArgs++;
+        pilaArgumentos.push(pilaArgumentos.pop() + 1);
     }
 
     @Override

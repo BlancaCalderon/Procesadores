@@ -11,23 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/lexico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sintactico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/sintactico.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EvaluadorDePolinomioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EvaluadorDePolinomioListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lexico.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lexico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lexico.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/lexico.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintactico.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintactico.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintacticoVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +73,7 @@
       <workItem from="1672226018322" duration="706000" />
       <workItem from="1672311792080" duration="12825000" />
       <workItem from="1672741277025" duration="12260000" />
-      <workItem from="1672828431151" duration="8980000" />
+      <workItem from="1672828431151" duration="10606000" />
     </task>
     <servers />
   </component>

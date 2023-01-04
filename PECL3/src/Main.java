@@ -64,7 +64,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Fin del programa por error");
         }
     }

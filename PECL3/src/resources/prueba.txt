@@ -1,7 +1,7 @@
-%%% Programa 2 de validación de la práctica
+%%% Programa 3 de validación de la práctica
 %%% 3 de intérprete de un lenguaje
 
-%%% Este programa evalua elementos del lenguaje
+%%% Este programa prueba elementos más avanzados.
 
 
 function testea_funciones_integradas(){
@@ -128,9 +128,21 @@ function llamadas_recursivas(cuantas){
 };
 
 
+function opera_polinomios(poli,numero){
+    let contador = numero;
+    let polinomio = poli;
+    while (contador > 0) {
+        polinomio = polinomio + poli;
+        contador = contador - 1;
+    };
+
+    return polinomio;
+
+};
 
 
-function fun_principal(){
+
+function mifun_principal(repeticiones){
 
     testea_funciones_integradas();
     testea_comentarios();
@@ -140,6 +152,15 @@ function fun_principal(){
     testea_operadores_matematicos();
     testea_evaluacion_polinomios();
     llamadas_recursivas(10);
+
+    %%% El programa se ejecutará pasando como parámetro el valor 5, que deberá
+    %%% ser pasado desde línea de comandos.
+    let repeticiones = 5;
+    let npoli = opera_polinomios('x^2+2xy+1',repeticiones);
+    print (npoli);
+    print (val(npoli, 'x', 1, 'y', 2));
+    print (npoli-'x^2+2xy+1');
+    print (val(npoli-'x^2+2xy+1', 'x', 2, 'y', 3));
 
 
 };

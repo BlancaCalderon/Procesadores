@@ -31,8 +31,11 @@ public class Errores extends Exception {
     }
 
     private void tratamiento() {
-        System.out.print("Error " + tipoError + ": ");
+        if (tipoError >= 10) {
+            System.out.print("Error " + tipoError + ": ");
+        }
         switch (tipoError) {
+            case 0 -> System.out.println("Fin del programa");
             case 10 -> System.out.println("La variable '" + args1 + "' no se encuentra en la tabla de simbolos");
             case 11 -> System.out.println("La variable '" + args1 + "' no esta inicializada");
             case 12 -> System.out.println("No se puede convertir el tipo '" + args1 + "' a '" + args2 + "'");
@@ -47,6 +50,10 @@ public class Errores extends Exception {
             case 52 -> System.out.println("La funcion val no tiene el numero parametros correcto");
             case 53 -> System.out.println("La funcion val necesita un polinomio a evaluar");
         }
+    }
+
+    public int getTipoError() {
+        return tipoError;
     }
 }
 

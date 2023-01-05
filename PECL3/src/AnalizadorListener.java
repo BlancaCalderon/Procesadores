@@ -12,27 +12,33 @@ public class AnalizadorListener extends sintacticoBaseListener {
     private HashMap<Integer, TablaSimbolos> tablasDeSimbolos;
     private Stack<Dato> pila;
     private Stack<Integer> pilaArgumentos;
+    private Stack<String> pilaLlamadas;
+    private Stack<ParseTree> familia;
     private Stack<ParseTree> hijosReutilizables;
     private boolean esDeclaracion;
 
-    public AnalizadorListener(int opcion, TablaSimbolos tablaSimbolos) {
+    public AnalizadorListener(int opcion, TablaSimbolos tablaSimbolos, Stack<String> pilaLlamadas) {
         this.ambito = -1;
         this.opcion = opcion;
         this.tablasDeSimbolos = new HashMap<Integer, TablaSimbolos>();
         this.tablasDeSimbolos.put(0, tablaSimbolos);
         this.pila = new Stack<>();
         this.pilaArgumentos = new Stack<>();
+        this.pilaLlamadas = pilaLlamadas;
+        this.familia = new Stack<>();
         this.hijosReutilizables = new Stack<>();
         esDeclaracion = false;
     }
 
-    public AnalizadorListener(int opcion, int ambito, HashMap<Integer, TablaSimbolos> tablasDeSimbolos) {
+    public AnalizadorListener(int opcion, int ambito, HashMap<Integer, TablaSimbolos> tablasDeSimbolos, Stack<ParseTree> familia, Stack<ParseTree> hijosReutilizables, Stack<String> pilaLlamadas) {
         this.ambito = ambito;
         this.opcion = opcion;
         this.tablasDeSimbolos = tablasDeSimbolos;
         this.pila = new Stack<>();
         this.pilaArgumentos = new Stack<>();
-        this.hijosReutilizables = new Stack<>();
+        this.pilaLlamadas = pilaLlamadas;
+        this.familia = familia;
+        this.hijosReutilizables = hijosReutilizables;
         esDeclaracion = false;
     }
 
@@ -44,14 +50,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 3. Cambiar el valor de un avariable
                 4. Continuar con la ejecucion
                 5. Parar la ejecucion""");
-    }
-
-    private boolean stop() {
-        if (opcion == 2) {
-            Scanner input = new Scanner(System.in);
-            mostrarMenu();
-        }
-        return true;
     }
 
     private Dato getElemTabla(String id) throws Errores {
@@ -66,7 +64,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         throw new Errores(10, id);
     }
 
-    public void evaluarPolinomio() throws Errores {
+    private void evaluarPolinomio() throws Errores {
         HashMap<Character, Float> tablaAux = new HashMap<>();
         Dato valor, id, polinomio, retorno = new Dato();
         int nArgs = pilaArgumentos.pop();
@@ -95,6 +93,75 @@ public class AnalizadorListener extends sintacticoBaseListener {
         caminante.walk(listener, polinomio.getArbol());
 
         pila.push(retorno);
+    }
+
+    private void mostrarTablaSimbolos() {
+        for (int i = 0; i < tablasDeSimbolos.size(); i++) {
+            System.out.println("Ambito: " + i);
+            tablasDeSimbolos.get(i).mostrarTablaSimbolo();
+        }
+    }
+
+    private void mostrarPilaLlamadas() {
+        System.out.println("---------------- Pila Llamadas ------------------");
+        for (int i = 0; i < pilaLlamadas.size(); i++) {
+            System.out.println(pilaLlamadas.get(i));
+        }
+        System.out.println("-------------------------------------------------");
+    }
+
+    private void cambiarVariable() {
+        Scanner input = new Scanner(System.in);
+        int ambitoElegido = 0;
+        String variable = "";
+        String valor = "";
+        if (tablasDeSimbolos.size() > 1) {
+            System.out.println("Introduce el ambito en el que se encuentra la variable: ");
+            ambitoElegido = input.nextInt();
+        }
+        if (tablasDeSimbolos.containsKey(ambitoElegido)) {
+            System.out.println("Introduce la variable que quieres cambiar:");
+            variable = input.nextLine();
+
+            if (tablasDeSimbolos.get(ambitoElegido).containsId(variable)) {
+                System.out.println("Introduce el valor para la variable");
+                valor = input.nextLine();
+                Dato valorAux = new Dato(valor);
+                tablasDeSimbolos.get(ambito).addElem(variable, valorAux);
+            }
+            else {
+                System.out.println("La variable elegida no existe");
+            }
+        }
+        else {
+            System.out.println("El ambito seleccionado es incorrecto");
+        }
+
+    }
+
+    @Override
+    public void enterSentencia(sintactico.SentenciaContext ctx) throws Errores {
+        if (opcion == 2) {
+            boolean continuar = true;
+            while (continuar) {
+                System.out.println("Linea " + ctx.start.getLine() + ": " + ctx.getText());
+                mostrarMenu();
+                Scanner input = new Scanner(System.in);
+                int eleccion = input.nextInt();
+
+                switch (eleccion) {
+                    case 1 -> mostrarTablaSimbolos();
+                    case 2 -> mostrarPilaLlamadas();
+                    case 3 -> cambiarVariable();
+                    case 4 -> {
+                        continuar = false;
+                        System.out.println("Reanudar la ejecucion");
+                    }
+                    case 5 -> throw new Errores(0);
+                    default -> System.out.println("La opcion " + eleccion + "no existe");
+                }
+            }
+        }
     }
 
     @Override
@@ -174,6 +241,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 resultado = String.valueOf(Float.parseFloat(a.getLexema()) - Float.parseFloat(b.getLexema()));
             }
         }
+
         else if (a.getTipo().equals("String") && b.getTipo().equals("String")) {
             if (ctx.getChild(1).getText().equals("+")) {
                 resultado = a.getLexema() + b.getLexema();
@@ -371,7 +439,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void enterCondicion(sintactico.CondicionContext ctx) {
         System.out.println("Voy a condicionar");
         //No vamos a añadir los else
-
+        familia.push(ctx);
         ParseTree condicion = ctx.getChild(1);
         ParseTree bloque = ctx.getChild(2);
         hijosReutilizables.push(bloque);
@@ -379,7 +447,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         ctx.children.remove(1);
         ctx.children.remove(1);
 
-        AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos);
+        AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos, familia, hijosReutilizables, pilaLlamadas);
         ParseTreeWalker caminante = new ParseTreeWalker();
         caminante.walk(listener, condicion);
 
@@ -392,6 +460,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void exitCondicion(sintactico.CondicionContext ctx) {
         ctx.addChild((RuleContext) hijosReutilizables.pop());
         ctx.addChild((RuleContext) hijosReutilizables.pop());
+        familia.pop();
     }
 
     @Override
@@ -399,6 +468,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         System.out.println("Voy a buclear");
         boolean iterar = true;
 
+        familia.push(ctx);
         ParseTree condicion = ctx.getChild(1);
         ParseTree bloque = ctx.getChild(2);
         hijosReutilizables.push(bloque);
@@ -407,7 +477,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         ctx.children.remove(1);
 
         while (iterar) {
-            AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos);
+            AnalizadorListener listener = new AnalizadorListener(opcion, ambito, tablasDeSimbolos, familia, hijosReutilizables, pilaLlamadas);
             ParseTreeWalker caminante = new ParseTreeWalker();
             caminante.walk(listener, condicion);
 
@@ -424,6 +494,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void exitWhilebucle(sintactico.WhilebucleContext ctx) {
         ctx.addChild((RuleContext) hijosReutilizables.pop());
         ctx.addChild((RuleContext) hijosReutilizables.pop());
+        familia.pop();
     }
 
     @Override
@@ -494,11 +565,60 @@ public class AnalizadorListener extends sintacticoBaseListener {
             for (int i = argsAux - 1; i >= 0; i--) {
                 tablaAux.put(func.getIdArgumentos().get(i), pila.pop());
             }
+            Stack<ParseTree> pilaAux = new Stack<>();
+            System.out.println("FAMILIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + familia);
+            while (!familia.empty()) {
+                ParseTree varAux = familia.pop();
+                System.out.println("HOLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                if (varAux instanceof sintactico.CondicionContext) {
+                    sintactico.CondicionContext  varAuxCondicion = (sintactico.CondicionContext) varAux;
+                    varAuxCondicion.addChild((RuleContext) hijosReutilizables.pop());
+                    varAuxCondicion.addChild((RuleContext) hijosReutilizables.pop());
+                    pilaAux.push(varAuxCondicion);
+                }
+                else {
+                    sintactico.WhilebucleContext varAuxCondicion = (sintactico.WhilebucleContext) varAux;
+                    varAuxCondicion.addChild((RuleContext) hijosReutilizables.pop());
+                    varAuxCondicion.addChild((RuleContext) hijosReutilizables.pop());
+                    pilaAux.push(varAuxCondicion);
+                }
+            }
+            System.out.println("SOooooooooooooooooooooooooooooooooooY UNA PILA AUXILIAR " + pilaAux);
             TablaSimbolos tablaSimbolos = new TablaSimbolos(tablaAux, tablasDeSimbolos.get(0).getTablaFunciones());
 
-            AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
+            AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos, pilaLlamadas);
             ParseTreeWalker caminante = new ParseTreeWalker();
             caminante.walk(listener, func.getRaiz());
+
+            while (!pilaAux.empty()) {
+                ParseTree varAux = pilaAux.pop();
+
+                if (varAux instanceof sintactico.CondicionContext) {
+                    sintactico.CondicionContext  varAuxCondicion = (sintactico.CondicionContext) varAux;
+                    ParseTree condicion = varAuxCondicion.getChild(1);
+                    ParseTree bloque = varAuxCondicion.getChild(2);
+                    if (condicion != null && bloque != null) {
+                        hijosReutilizables.push(bloque);
+                        hijosReutilizables.push(condicion);
+                        varAuxCondicion.children.remove(1);
+                        varAuxCondicion.children.remove(1);
+                    }
+                    familia.push(varAuxCondicion);
+                }
+                else {
+                    sintactico.WhilebucleContext varAuxCondicion = (sintactico.WhilebucleContext) varAux;
+                    ParseTree condicion = varAuxCondicion.getChild(1);
+                    ParseTree bloque = varAuxCondicion.getChild(2);
+                    if (condicion != null && bloque != null) {
+                        hijosReutilizables.push(bloque);
+                        hijosReutilizables.push(condicion);
+                        varAuxCondicion.children.remove(1);
+                        varAuxCondicion.children.remove(1);
+                    }
+                    familia.push(varAuxCondicion);
+                }
+            }
+            System.out.println("SOooooooooooooooooooooooooooooooooooooY UNA PILA AUXILIAR " + pilaAux);
 
             pila.push(tablaSimbolos.getRetorno());
             if (ctx.parent instanceof sintactico.SentenciaContext) {
@@ -582,11 +702,12 @@ public class AnalizadorListener extends sintacticoBaseListener {
     @Override
     public void enterFunc(sintactico.FuncContext ctx) {
         System.out.println("Tengo una función");
+        pilaLlamadas.push(ctx.getChild(1).getText() + "()");
 
     }
 
     @Override
     public void exitFunc(sintactico.FuncContext ctx) {
-
+        pilaLlamadas.pop();
     }
 }

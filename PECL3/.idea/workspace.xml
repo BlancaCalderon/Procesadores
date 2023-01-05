@@ -16,7 +16,11 @@
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TablaSimbolos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintacticoListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +77,8 @@
       <workItem from="1672226018322" duration="706000" />
       <workItem from="1672311792080" duration="12825000" />
       <workItem from="1672741277025" duration="12260000" />
-      <workItem from="1672828431151" duration="10606000" />
+      <workItem from="1672828431151" duration="11329000" />
+      <workItem from="1672914828666" duration="10572000" />
     </task>
     <servers />
   </component>

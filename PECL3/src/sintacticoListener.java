@@ -20,7 +20,7 @@ public interface sintacticoListener extends ParseTreeListener {
 	 * Enter a parse tree produced by {@link sintactico#sentencia}.
 	 * @param ctx the parse tree
 	 */
-	void enterSentencia(sintactico.SentenciaContext ctx);
+	void enterSentencia(sintactico.SentenciaContext ctx) throws Errores;
 	/**
 	 * Exit a parse tree produced by {@link sintactico#sentencia}.
 	 * @param ctx the parse tree

@@ -230,7 +230,13 @@ public class sintactico extends Parser {
 		@Override public int getRuleIndex() { return RULE_sentencia; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof sintacticoListener ) ((sintacticoListener)listener).enterSentencia(this);
+			if ( listener instanceof sintacticoListener ) {
+				try {
+					((sintacticoListener)listener).enterSentencia(this);
+				} catch (Errores e) {
+					throw new RuntimeException(e);
+				}
+			}
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {

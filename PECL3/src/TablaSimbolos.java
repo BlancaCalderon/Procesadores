@@ -103,6 +103,11 @@ public class TablaSimbolos {
         tablaFunciones.remove(id);
     }
 
+    public void mostrarTablaSimbolo() {
+        for (HashMap.Entry<String, Dato> set : tabla.entrySet()) {
+            System.out.println(set.getKey() + " - " + set.getValue().getLexema());
+        }
+    }
     @Override
     public String toString() {
         return "TablaSimbolos{" +

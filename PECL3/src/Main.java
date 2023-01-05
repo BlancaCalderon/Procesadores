@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -18,7 +19,7 @@ public class Main {
             return;
         }*/
 
-        opcion = 1;//Integer.parseInt(args[1]);
+        opcion = 2;//Integer.parseInt(args[1]);
         file = "./src/resources/prueba.txt";
 
         try {
@@ -46,7 +47,8 @@ public class Main {
 
                 HashMap<String, Dato> tabla = new HashMap<>();
                 TablaSimbolos tablaSimbolos = new TablaSimbolos(tabla, tablaFunciones);
-                AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos);
+                Stack<String> pilaLlamadas = new Stack<>();
+                AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos, pilaLlamadas);
 
                 ParseTreeWalker caminante = new ParseTreeWalker();
 
@@ -65,7 +67,6 @@ public class Main {
             throw new RuntimeException(e);
         } catch (Exception e) {
             //e.printStackTrace();
-            System.out.println("Fin del programa por error");
         }
     }
 }

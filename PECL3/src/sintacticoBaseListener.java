@@ -28,7 +28,7 @@ public class sintacticoBaseListener implements sintacticoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSentencia(sintactico.SentenciaContext ctx) { }
+	@Override public void enterSentencia(sintactico.SentenciaContext ctx) throws Errores { }
 	/**
 	 * {@inheritDoc}
 	 *

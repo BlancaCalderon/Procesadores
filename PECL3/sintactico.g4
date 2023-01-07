@@ -67,7 +67,7 @@ opermodexp: opermod | operexp;
 opersumrest: opersum | operrest;
 
 //Polinomios
-polinomio: comillasimple monomio (opersumrest monomio)* comillasimple;
+polinomio: comillasimple opersumrest? monomio (opersumrest monomio)* comillasimple;
 monomio: (numerico letras | numerico | letras) (operexp numerico)*;
 
 //Numéricos con signo

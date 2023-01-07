@@ -66,7 +66,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

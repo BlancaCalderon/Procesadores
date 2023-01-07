@@ -1,15 +1,11 @@
-import org.antlr.v4.runtime.RuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
 import java.util.HashMap;
-import java.util.Stack;
 
 public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
 
     private HashMap<Character, Float> tablaValores;
-    private float pilaMonomio;
-    private float pilaPolinomio;
+    private float numero;
+    private float letra;
+    private float resultado;
     private char operacionMonomio;
     private char operacionPolinomio;
     private Dato retorno;
@@ -19,8 +15,9 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
         this.retorno = retorno;
         operacionPolinomio = '+';
         operacionMonomio = '*';
-        pilaMonomio = 1;
-        pilaPolinomio = 0;
+        numero = 1;
+        letra = 1;
+        resultado = 0;
     }
 
     @Override
@@ -38,10 +35,10 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
             numericAux = tablaValores.get(ctx.getText().charAt(i));
 
             if (operacionMonomio == '*') {
-                pilaMonomio *= numericAux;
+                letra *= numericAux;
             }
             else {
-                pilaMonomio = (float) Math.pow(pilaMonomio, numericAux);
+                letra = (float) Math.pow(letra, numericAux);
             }
         }
     }
@@ -56,10 +53,10 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
         float numericAux = Float.parseFloat(ctx.getText());
 
         if (operacionMonomio == '*') {
-            pilaMonomio *= numericAux;
+            numero *= numericAux;
         }
         else {
-            pilaMonomio = (float) Math.pow(pilaMonomio, numericAux);
+            letra = (float) Math.pow(letra, numericAux);
         }
     }
 
@@ -70,15 +67,17 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
 
     @Override
     public void exitMonomio(sintactico.MonomioContext ctx) {
-        float numericAux = pilaMonomio;
+        float numericAux = numero * letra;
+        System.out.println("SOY EL ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR --> " + numericAux);
 
         if (operacionPolinomio == '+') {
-            pilaPolinomio += numericAux;
+            resultado += numericAux;
         }
         else {
-            pilaPolinomio -= numericAux;
+            resultado -= numericAux;
         }
-        pilaMonomio = 1;
+        numero = 1;
+        letra = 1;
         operacionMonomio = '*';
     }
 
@@ -104,7 +103,7 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
 
     @Override
     public void exitPolinomio(sintactico.PolinomioContext ctx) {
-        retorno.setLexema(String.valueOf(pilaPolinomio));
+        retorno.setLexema(String.valueOf(resultado));
         retorno.setTipo("float");
         System.out.println("RESULTADOOOOOOOOOOOOOO " + retorno.getLexema());
     }

@@ -1,4 +1,7 @@
-import org.antlr.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 public class Dato {
 
@@ -20,6 +23,10 @@ public class Dato {
     public Dato(String lexema) {
         this.lexema = lexema;
         this.tipo = caster(lexema);
+        if (this.tipo.equals("polinomio")) {
+            this.lexema = lexema.substring(1, lexema.length()-1);
+            this.arbol = construirArbol(lexema);
+        }
     }
 
     public Dato(String lexema, String tipo) {
@@ -51,6 +58,16 @@ public class Dato {
         this.arbol = arbol;
     }
 
+    private sintactico.PoliContext construirArbol(String lexemaPolinomio) {
+        CharStream input = CharStreams.fromString(lexemaPolinomio);
+        lexico lexer = new lexico(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        sintactico parser = new sintactico(tokens);
+        parser.setBuildParseTree(true);
+        ParseTree tree = parser.expr();
+        return (sintactico.PoliContext) tree;
+    }
+
     public  String caster(String variable) {
         try {
             Integer.parseInt(variable);
@@ -64,6 +81,9 @@ public class Dato {
             } catch (NumberFormatException nfe2) {
                 if (variable.equals("true") || variable.equals("false")) {
                     return "boolean";
+                }
+                else if (variable.charAt(0) == '\'') {
+                    return "polinomio";
                 }
                 else {
                     return "String";

@@ -1,7 +1,8 @@
-import org.antlr.v4.runtime.RuleContext;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
@@ -93,6 +94,127 @@ public class AnalizadorListener extends sintacticoBaseListener {
         caminante.walk(listener, polinomio.getArbol());
 
         pila.push(retorno);
+    }
+
+    private Dato operarPolinomio(Dato a, Dato b, String opcode) {
+        String bAux = "", sumaPolinomio;
+        if (opcode.equals("-")) {
+            for (int i = 0; i < b.getLexema().length(); i++) {
+                if (i == 0 && (b.getLexema().charAt(i) != '-' || b.getLexema().charAt(i) != '+')) {
+                    bAux = bAux + "-" + b.getLexema().charAt(i);
+                }
+                else if (b.getLexema().charAt(i) == '-') {
+                    bAux += '+';
+                }
+                else if (b.getLexema().charAt(i) == '+') {
+                    bAux += '-';
+                }
+                else {
+                    bAux += b.getLexema().charAt(i);
+                }
+            }
+        }
+        else {
+            bAux = "+" + b.getLexema();
+        }
+        sumaPolinomio = a.getLexema() + bAux;
+        sumaPolinomio = "'" + optimizarPolinomio(sumaPolinomio) + "'";
+
+        Dato datoPolinomio = new Dato(sumaPolinomio);
+
+        return datoPolinomio;
+    }
+
+    private String optimizarPolinomio(String polinomio) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        ArrayList<String> letras = new ArrayList<>();
+        ArrayList<Character> operadores = new ArrayList<>();
+        String lexemaAux = polinomio;
+        String cadNumeros = "", cadLetras = "";
+        boolean reconocerNum = true;
+
+        for (int i = 0; i < lexemaAux.length(); i++) {
+            if (i == 0 && lexemaAux.charAt(i) != '-' && lexemaAux.charAt(i) != '+') {
+                operadores.add('+');
+                if (Character.isDigit(lexemaAux.charAt(i))) {
+                    cadNumeros += lexemaAux.charAt(i);
+                }
+                else {
+                    cadLetras += lexemaAux.charAt(i);
+                }
+            }
+            else if (lexemaAux.charAt(i) == '-' || lexemaAux.charAt(i) == '+') {
+                if (i != 0) {
+                    if (cadNumeros.isEmpty()) {
+                        numeros.add(1);
+                    }
+                    else {
+                        numeros.add(Integer.parseInt(cadNumeros));
+                    }
+                    letras.add(cadLetras);
+                }
+                cadNumeros = "";
+                cadLetras = "";
+                reconocerNum = true;
+                operadores.add(lexemaAux.charAt(i));
+            }
+            else if (Character.isDigit(lexemaAux.charAt(i))) {
+                if (reconocerNum) {
+                    cadNumeros += lexemaAux.charAt(i);
+                }
+                else {
+                    cadLetras += lexemaAux.charAt(i);
+                }
+            }
+            else {
+                reconocerNum = false;
+                cadLetras += lexemaAux.charAt(i);
+            }
+        }
+        if (cadNumeros.isEmpty()) {
+            numeros.add(1);
+        }
+        else {
+            numeros.add(Integer.parseInt(cadNumeros));
+        }
+        letras.add(cadLetras);
+
+        System.out.println(numeros);
+        System.out.println(letras);
+        System.out.println(operadores);
+
+        String polinomioAux = "";
+        int suma;
+        ArrayList<String> visitados = new ArrayList<>();
+        for (int i = 0; i < letras.size(); i++) {
+            suma = 0;
+            if (!visitados.contains(letras.get(i))) {
+                for (int j = i; j < letras.size(); j++) {
+                    if (letras.get(i).equals(letras.get(j))) {
+                        if (operadores.get(j) == '+') {
+                            suma += numeros.get(j);
+                        }
+                        else {
+                            suma -= numeros.get(j);
+                        }
+                    }
+                }
+                if (suma == 1) {
+                    polinomioAux += "+" + letras.get(i);
+                }
+                else if (suma > 0) {
+                    polinomioAux += "+" + suma + letras.get(i);
+                }
+                else if (suma == -1) {
+                    polinomioAux += "-" + letras.get(i);
+                }
+                else if (suma < 0) {
+                    polinomioAux += suma + letras.get(i);
+                }
+                visitados.add(letras.get(i));
+            }
+        }
+        return polinomioAux;
     }
 
     private void mostrarTablaSimbolos() {
@@ -241,7 +363,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 resultado = String.valueOf(Float.parseFloat(a.getLexema()) - Float.parseFloat(b.getLexema()));
             }
         }
-
         else if (a.getTipo().equals("String") && b.getTipo().equals("String")) {
             if (ctx.getChild(1).getText().equals("+")) {
                 resultado = a.getLexema() + b.getLexema();
@@ -250,12 +371,17 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION " + ctx.getChild(1).getText());
             }
         }
+        else if (a.getTipo().equals("polinomio") && b.getTipo().equals("polinomio")) {
+            Dato resultadoPolinomio = operarPolinomio(a, b, ctx.getChild(1).getText());
+            pila.push(resultadoPolinomio);
+        }
         else {
             throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
 
         }
-
-        pila.push(new Dato(resultado));
+        if (!resultado.isEmpty()) {;
+            pila.push(new Dato(resultado));
+        }
         System.out.println(pila);
     }
 

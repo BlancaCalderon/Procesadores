@@ -13,14 +13,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Procesadores_jar/Procesadores.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Procesadores/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Procesadores/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sintactico.g4" beforeDir="false" afterPath="$PROJECT_DIR$/sintactico.g4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EvaluadorDePolinomioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EvaluadorDePolinomioListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/prueba.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/prueba.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintactico.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sintactico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sintactico.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +77,7 @@
       <workItem from="1672741277025" duration="12260000" />
       <workItem from="1672828431151" duration="11329000" />
       <workItem from="1672914828666" duration="10843000" />
-      <workItem from="1673087762763" duration="12811000" />
+      <workItem from="1673087762763" duration="16716000" />
     </task>
     <servers />
   </component>

@@ -178,11 +178,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
             numeros.add(Integer.parseInt(cadNumeros));
         }
         letras.add(cadLetras);
-
-        System.out.println(numeros);
-        System.out.println(letras);
-        System.out.println(operadores);
-
         String polinomioAux = "";
         int suma;
         ArrayList<String> visitados = new ArrayList<>();
@@ -288,25 +283,21 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterLetIdentificador(sintactico.LetIdentificadorContext ctx) {
-        System.out.println("Voy a declarar");
         tablasDeSimbolos.get(ambito).addElem(ctx.stop.getText(), new Dato());
     }
 
     @Override
     public void enterLetAsignacion(sintactico.LetAsignacionContext ctx) {
-        System.out.println("Voy a declarar");
         esDeclaracion = true;
     }
 
     @Override
     public void exitAsig(sintactico.AsigContext ctx) throws Errores{
-        System.out.println("Voy a realizar una asignacion");
         String idAux = ctx.start.getText();
         Dato valAux = pila.pop();
         boolean encontrado = false;
 
         if (esDeclaracion) {
-            System.out.println(ambito);
             tablasDeSimbolos.get(ambito).addElem(idAux, valAux);
         }
         else {
@@ -327,11 +318,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         esDeclaracion = false;
-    }
-
-    @Override
-    public void enterSumrestoper(sintactico.SumrestoperContext ctx) {
-        System.out.println("Voy a sumar");
     }
 
     @Override
@@ -368,7 +354,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 resultado = a.getLexema() + b.getLexema();
             }
             else {
-                throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION " + ctx.getChild(1).getText());
+                throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
             }
         }
         else if (a.getTipo().equals("polinomio") && b.getTipo().equals("polinomio")) {
@@ -376,18 +362,12 @@ public class AnalizadorListener extends sintacticoBaseListener {
             pila.push(resultadoPolinomio);
         }
         else {
-            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+            throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
 
         }
         if (!resultado.isEmpty()) {;
             pila.push(new Dato(resultado));
         }
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterMuldivoper(sintactico.MuldivoperContext ctx) {
-        System.out.println("Voy a multiplicar");
     }
 
     @Override
@@ -420,15 +400,10 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+            throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
         }
 
         pila.push(new Dato(resultado));
-        System.out.println(pila);
-    }
-
-    @Override public void enterModexpoper(sintactico.ModexpoperContext ctx) {
-        System.out.println("Voy a modular/exponenciar");
     }
 
     @Override public void exitModexpoper(sintactico.ModexpoperContext ctx) throws Errores{
@@ -451,15 +426,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+            throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
         }
         pila.push(new Dato(String.valueOf(resultado)));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterComparacionoper(sintactico.ComparacionoperContext ctx) {
-        System.out.println("Voy a comparar");
     }
 
     @Override
@@ -494,15 +463,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+            throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
         }
         pila.push(new Dato(String.valueOf(resultado)));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterLogicooper(sintactico.LogicooperContext ctx) {
-        System.out.println("Voy a comparar lógicamente");
     }
 
     @Override
@@ -531,15 +494,9 @@ public class AnalizadorListener extends sintacticoBaseListener {
             }
         }
         else {
-            throw new Errores(20, a.getTipo(), b.getTipo(), "OPERACION '" + ctx.getChild(1).getText() + "'");
+            throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
         }
         pila.push(new Dato(String.valueOf(resultado)));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterNegacion(sintactico.NegacionContext ctx) {
-        System.out.println("Voy a negar");
     }
 
     @Override
@@ -558,13 +515,10 @@ public class AnalizadorListener extends sintacticoBaseListener {
             throw new Errores(22, a.getTipo(), "OPERACION '" + ctx.getChild(0).getText() + "'");
         }
         pila.push(new Dato(String.valueOf(resultado)));
-        System.out.println(pila);
     }
 
     @Override
     public void enterCondicion(sintactico.CondicionContext ctx) {
-        System.out.println("Voy a condicionar");
-        //No vamos a añadir los else
         familia.push(ctx);
         ParseTree condicion = ctx.getChild(1);
         ParseTree bloque = ctx.getChild(2);
@@ -591,7 +545,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterWhilebucle(sintactico.WhilebucleContext ctx) {
-        System.out.println("Voy a buclear");
         boolean iterar = true;
 
         familia.push(ctx);
@@ -624,11 +577,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterCuerpocondicion(sintactico.CuerpocondicionContext ctx) {
-        System.out.println("Voy a realizar una condicion");
-    }
-
-    @Override
     public void exitCuerpocondicion(sintactico.CuerpocondicionContext ctx) throws Errores {
         Dato resCondicion = pila.pop();
         if (resCondicion.getTipo().equals("boolean")) {
@@ -641,7 +589,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterBloque(sintactico.BloqueContext ctx) {
-        System.out.println("Voy a cambiar de ambito");
         ambito++;
         if (ambito != 0) {
             tablasDeSimbolos.put(ambito, new TablaSimbolos());
@@ -650,24 +597,12 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitBloque(sintactico.BloqueContext ctx) {
-        System.out.println("TABLACONAMBITOS");
-        System.out.println(pila);
-        for (int i = 0; i <tablasDeSimbolos.size(); i++) {
-            System.out.println(tablasDeSimbolos.get(i));
-        }
-
         tablasDeSimbolos.remove(ambito);
         ambito--;
     }
 
     @Override
-    public void enterFuncion(sintactico.FuncionContext ctx) {
-        System.out.println("Voy a llamar");
-    }
-
-    @Override
     public void exitFuncion(sintactico.FuncionContext ctx) throws Errores {
-        System.out.println(ctx.start.getText());
         Funcion func = tablasDeSimbolos.get(0).getFuncion(ctx.start.getText());
         if (func == null) {
             throw new Errores(40, ctx.start.getText());
@@ -684,7 +619,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
         }
 
         if (func.getIdentificador().equals("print")) {
-            System.out.println("VOY A DEPURAR <------------------------------------------------" + pila.pop().getLexema());
+            System.out.println(pila.pop().getLexema());
         }
         else {
             HashMap<String, Dato> tablaAux = new HashMap<>();
@@ -692,10 +627,8 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 tablaAux.put(func.getIdArgumentos().get(i), pila.pop());
             }
             Stack<ParseTree> pilaAux = new Stack<>();
-            System.out.println("FAMILIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + familia);
             while (!familia.empty()) {
                 ParseTree varAux = familia.pop();
-                System.out.println("HOLaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 if (varAux instanceof sintactico.CondicionContext) {
                     sintactico.CondicionContext  varAuxCondicion = (sintactico.CondicionContext) varAux;
                     varAuxCondicion.addChild((RuleContext) hijosReutilizables.pop());
@@ -709,7 +642,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
                     pilaAux.push(varAuxCondicion);
                 }
             }
-            System.out.println("SOooooooooooooooooooooooooooooooooooY UNA PILA AUXILIAR " + pilaAux);
             TablaSimbolos tablaSimbolos = new TablaSimbolos(tablaAux, tablasDeSimbolos.get(0).getTablaFunciones());
 
             AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos, pilaLlamadas);
@@ -744,7 +676,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
                     familia.push(varAuxCondicion);
                 }
             }
-            System.out.println("SOooooooooooooooooooooooooooooooooooooY UNA PILA AUXILIAR " + pilaAux);
 
             pila.push(tablaSimbolos.getRetorno());
             if (ctx.parent instanceof sintactico.SentenciaContext) {
@@ -769,53 +700,24 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterNumeric(sintactico.NumericContext ctx) {
-        System.out.println("Tengo un numerico ");
-    }
-
-    @Override
     public void exitNumeric(sintactico.NumericContext ctx) {
         pila.push(new Dato(ctx.start.getText()));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterCadena(sintactico.CadenaContext ctx) {
-        System.out.println("Tengo una cadena");
     }
 
     @Override
     public void exitCadena(sintactico.CadenaContext ctx) {
         String cadena = ctx.start.getText();
         pila.push(new Dato(cadena.substring(1, cadena.length() - 1)));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterBool(sintactico.BoolContext ctx) {
-        System.out.println("Tengo un booleano");
     }
 
     @Override
     public void exitBool(sintactico.BoolContext ctx) {
         pila.push(new Dato(ctx.start.getText()));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterPoli(sintactico.PoliContext ctx) {
-        System.out.println("Tengo un polinomio");
     }
 
     @Override
     public void exitPoli(sintactico.PoliContext ctx) {
         pila.push(new Dato(ctx));
-        System.out.println(pila);
-    }
-
-    @Override
-    public void enterRetorno(sintactico.RetornoContext ctx) {
-        System.out.println("Voy a devolverme");
     }
 
     @Override
@@ -827,7 +729,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void enterFunc(sintactico.FuncContext ctx) {
-        System.out.println("Tengo una función");
         pilaLlamadas.push(ctx.getChild(1).getText() + "()");
 
     }

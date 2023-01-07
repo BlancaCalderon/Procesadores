@@ -10,20 +10,16 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Errores {
         String file;
         int opcion;
 
-        /*if (args.length != 2) {
-            System.out.println("Error número de argumentos incorrectos");
-            return;
-        }*/
-
-        opcion = 2;//Integer.parseInt(args[1]);
-        file = "./src/resources/prueba.txt";
-
         try {
-
+            if (args.length < 2) {
+                throw new Errores(1);
+            }
+            file = args[0];
+            opcion = Integer.parseInt(args[1]);
             InputStream is = new FileInputStream(file);
 
             if (opcion == 1 || opcion == 2) {
@@ -36,37 +32,44 @@ public class Main {
 
                 ParseTree tree = parser.axioma();
                 HashMap<String, Funcion> tablaFunciones = new HashMap<>();
-                AnalizadorVisitor visitor = new AnalizadorVisitor(tablaFunciones);
+                AnalizadorVisitor<String> visitor = new AnalizadorVisitor<>(tablaFunciones);
                 visitor.visit(tree);
 
                 ArrayList<String> argumentos = new ArrayList<>();
                 argumentos.add("texto");
                 tablaFunciones.put("print", new Funcion("print", argumentos, null));
                 tablaFunciones.put("val", new Funcion("val", null, null));
-                System.out.println(tablaFunciones.toString());
+
+                String nombreFuncion = tree.getChild(tree.getChildCount() - 3).getChild(1).getText();
+                Funcion funcRaiz = tablaFunciones.get(nombreFuncion);
 
                 HashMap<String, Dato> tabla = new HashMap<>();
+                for (int i = 0; i < funcRaiz.getNumArgumentos(); i++) {
+                    tabla.put(funcRaiz.getIdArgumentos().get(i), new Dato(args[i + 2]));
+                }
+
                 TablaSimbolos tablaSimbolos = new TablaSimbolos(tabla, tablaFunciones);
                 Stack<String> pilaLlamadas = new Stack<>();
                 AnalizadorListener listener = new AnalizadorListener(opcion, tablaSimbolos, pilaLlamadas);
 
                 ParseTreeWalker caminante = new ParseTreeWalker();
 
-                String nombreFuncion = tree.getChild(tree.getChildCount() - 3).getChild(1).getText();
-                System.out.println(nombreFuncion);
-                Funcion funcRaiz = tablaFunciones.get(nombreFuncion);
                 caminante.walk(listener, funcRaiz.getRaiz());
             }
             else {
-                System.out.println("Opcion incorrecta");
+                throw new Errores(3);
             }
 
+        } catch (NumberFormatException nfe) {
+            throw new Errores(3);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new Errores(2);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (RuntimeException rte) {
+            //rte.printStackTrace();
+        } catch (Errores e) {
+            throw new RuntimeException(e);
         }
     }
 }

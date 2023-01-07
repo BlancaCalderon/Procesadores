@@ -36,10 +36,13 @@ public class Errores extends Exception {
         }
         switch (tipoError) {
             case 0 -> System.out.println("Fin del programa");
+            case 1 -> System.out.println("El numero de argumentos de entrada es menor que 2");
+            case 2 -> System.out.println("El archivo no se ha encontrado");
+            case 3 -> System.out.println("La opcion introducida tiene que ser '1' o '2'");
             case 10 -> System.out.println("La variable '" + args1 + "' no se encuentra en la tabla de simbolos");
             case 11 -> System.out.println("La variable '" + args1 + "' no esta inicializada");
             case 12 -> System.out.println("No se puede convertir el tipo '" + args1 + "' a '" + args2 + "'");
-            case 20 -> System.out.println("No se puede hacer la '" + args3 + "' con los tipos: '" + args1 + "' y '" + args2 + "'");
+            case 20 -> System.out.println("No se puede hacer la operacion '" + args3 + "' con los tipos: '" + args1 + "' y '" + args2 + "'");
             case 21 -> System.out.println("El operador '" + args1 + "' introducido no existe");
             case 22 -> System.out.println("No se puede hacer la '" + args2 + "' con el tipo: '" + args1 + "'");
             case 30 -> System.out.println("La condicion debe ser de tipo booleano");

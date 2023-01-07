@@ -21,11 +21,6 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterLetras(sintactico.LetrasContext ctx) {
-        System.out.println("Tengo letras");
-    }
-
-    @Override
     public void exitLetras(sintactico.LetrasContext ctx) throws Errores{
         float numericAux;
         for (int i = 0; i < ctx.getText().length(); i++) {
@@ -44,11 +39,6 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterNumerico(sintactico.NumericoContext ctx) {
-        System.out.println("Tengo un numero");
-    }
-
-    @Override
     public void exitNumerico(sintactico.NumericoContext ctx) {
         float numericAux = Float.parseFloat(ctx.getText());
 
@@ -61,14 +51,8 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterMonomio(sintactico.MonomioContext ctx) {
-        System.out.println("Voy a monomiar");
-    }
-
-    @Override
     public void exitMonomio(sintactico.MonomioContext ctx) {
         float numericAux = numero * letra;
-        System.out.println("SOY EL ERROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOR --> " + numericAux);
 
         if (operacionPolinomio == '+') {
             resultado += numericAux;
@@ -82,18 +66,8 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     }
 
     @Override
-    public void enterOperexp(sintactico.OperexpContext ctx) {
-        System.out.println("Voy a exponenciar");
-    }
-
-    @Override
     public void exitOperexp(sintactico.OperexpContext ctx) {
         operacionMonomio = '^';
-    }
-
-    @Override
-    public void enterOpersumrest(sintactico.OpersumrestContext ctx) {
-        System.out.println("Voy a sumar");
     }
 
     @Override
@@ -105,7 +79,6 @@ public class EvaluadorDePolinomioListener extends sintacticoBaseListener {
     public void exitPolinomio(sintactico.PolinomioContext ctx) {
         retorno.setLexema(String.valueOf(resultado));
         retorno.setTipo("float");
-        System.out.println("RESULTADOOOOOOOOOOOOOO " + retorno.getLexema());
     }
 
 }

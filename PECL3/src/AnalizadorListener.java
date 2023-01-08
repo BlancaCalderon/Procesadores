@@ -21,7 +21,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public AnalizadorListener(int opcion, TablaSimbolos tablaSimbolos, Stack<String> pilaLlamadas) {
         this.ambito = -1;
         this.opcion = opcion;
-        this.tablasDeSimbolos = new HashMap<Integer, TablaSimbolos>();
+        this.tablasDeSimbolos = new HashMap<>();
         this.tablasDeSimbolos.put(0, tablaSimbolos);
         this.pila = new Stack<>();
         this.pilaArgumentos = new Stack<>();
@@ -120,30 +120,27 @@ public class AnalizadorListener extends sintacticoBaseListener {
         sumaPolinomio = a.getLexema() + bAux;
         sumaPolinomio = "'" + optimizarPolinomio(sumaPolinomio) + "'";
 
-        Dato datoPolinomio = new Dato(sumaPolinomio);
-
-        return datoPolinomio;
+        return new Dato(sumaPolinomio);
     }
 
     private String optimizarPolinomio(String polinomio) {
         ArrayList<Integer> numeros = new ArrayList<>();
         ArrayList<String> letras = new ArrayList<>();
         ArrayList<Character> operadores = new ArrayList<>();
-        String lexemaAux = polinomio;
         String cadNumeros = "", cadLetras = "";
         boolean reconocerNum = true;
 
-        for (int i = 0; i < lexemaAux.length(); i++) {
-            if (i == 0 && lexemaAux.charAt(i) != '-' && lexemaAux.charAt(i) != '+') {
+        for (int i = 0; i < polinomio.length(); i++) {
+            if (i == 0 && polinomio.charAt(i) != '-' && polinomio.charAt(i) != '+') {
                 operadores.add('+');
-                if (Character.isDigit(lexemaAux.charAt(i))) {
-                    cadNumeros += lexemaAux.charAt(i);
+                if (Character.isDigit(polinomio.charAt(i))) {
+                    cadNumeros += polinomio.charAt(i);
                 }
                 else {
-                    cadLetras += lexemaAux.charAt(i);
+                    cadLetras += polinomio.charAt(i);
                 }
             }
-            else if (lexemaAux.charAt(i) == '-' || lexemaAux.charAt(i) == '+') {
+            else if (polinomio.charAt(i) == '-' || polinomio.charAt(i) == '+') {
                 if (i != 0) {
                     if (cadNumeros.isEmpty()) {
                         numeros.add(1);
@@ -156,19 +153,19 @@ public class AnalizadorListener extends sintacticoBaseListener {
                 cadNumeros = "";
                 cadLetras = "";
                 reconocerNum = true;
-                operadores.add(lexemaAux.charAt(i));
+                operadores.add(polinomio.charAt(i));
             }
-            else if (Character.isDigit(lexemaAux.charAt(i))) {
+            else if (Character.isDigit(polinomio.charAt(i))) {
                 if (reconocerNum) {
-                    cadNumeros += lexemaAux.charAt(i);
+                    cadNumeros += polinomio.charAt(i);
                 }
                 else {
-                    cadLetras += lexemaAux.charAt(i);
+                    cadLetras += polinomio.charAt(i);
                 }
             }
             else {
                 reconocerNum = false;
-                cadLetras += lexemaAux.charAt(i);
+                cadLetras += polinomio.charAt(i);
             }
         }
         if (cadNumeros.isEmpty()) {
@@ -230,8 +227,8 @@ public class AnalizadorListener extends sintacticoBaseListener {
     private void cambiarVariable() {
         Scanner input = new Scanner(System.in);
         int ambitoElegido = 0;
-        String variable = "";
-        String valor = "";
+        String variable;
+        String valor;
         if (tablasDeSimbolos.size() > 1) {
             System.out.println("Introduce el ambito en el que se encuentra la variable: ");
             ambitoElegido = input.nextInt();
@@ -365,14 +362,14 @@ public class AnalizadorListener extends sintacticoBaseListener {
             throw new Errores(20, a.getTipo(), b.getTipo(), ctx.getChild(1).getText());
 
         }
-        if (!resultado.isEmpty()) {;
+        if (!resultado.isEmpty()) {
             pila.push(new Dato(resultado));
         }
     }
 
     @Override
     public void exitMuldivoper(sintactico.MuldivoperContext ctx) throws Errores {
-        String resultado = "";
+        String resultado;
         Dato b = pila.pop();
         Dato a = pila.pop();
 
@@ -407,7 +404,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
     }
 
     @Override public void exitModexpoper(sintactico.ModexpoperContext ctx) throws Errores{
-        int resultado = 0;
+        int resultado;
         Dato b = pila.pop();
         Dato a = pila.pop();
 
@@ -433,7 +430,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitComparacionoper(sintactico.ComparacionoperContext ctx) throws Errores {
-        boolean resultado = false;
+        boolean resultado;
         Dato b = pila.pop();
         Dato a = pila.pop();
 
@@ -470,7 +467,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitLogicooper(sintactico.LogicooperContext ctx) throws Errores {
-        boolean resultado = false;
+        boolean resultado;
         Dato b = pila.pop();
         Dato a = pila.pop();
 
@@ -501,7 +498,7 @@ public class AnalizadorListener extends sintacticoBaseListener {
 
     @Override
     public void exitNegacion(sintactico.NegacionContext ctx) throws Errores {
-        boolean resultado = false;
+        boolean resultado;
         Dato a = pila.pop();
 
         if (a.getTipo().equals("var")) {

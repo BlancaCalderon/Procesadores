@@ -10,10 +10,111 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4114c26-3a22-4a4f-8d51-b8c84291c814" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/resources/Prog1-BASE.pdlcalc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/Prog2-BASE-EVO.pdlcalc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/Prog3.pdlcalc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnalizadorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnalizadorVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AnalizadorVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AnalizadorVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Errores.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Errores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Errores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EvaluadorDePolinomioListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funcion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Funcion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Funcion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TablaSimbolos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TablaSimbolos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablaSimbolos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lexico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ArgumentoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ArgumentosContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$AsigContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$AxiomaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$BloqueContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$BoolContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$BooleanoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$BucleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$BuclewhileContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CadContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CadenaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CdContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CiContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ComaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ComillasimpleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ComparacionoperContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CondContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CondicionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CuerpoargumentosContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CuerpocondicionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$CuerpofuncionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$DeclContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$DevContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ElseContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ElseifContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ExprContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$FuncContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$FuncionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$FunctionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$IdeContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$IdentificadorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$IfContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$IgualContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LetAsignacionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LetContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LetIdentificadorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LetraContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LetrasContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LlamadafuncionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$LogicooperContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ModexpoperContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$MonomioContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$MuldivoperContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$NegacionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$NombrefuncionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$NumericContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$NumericoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperandContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpercomparacionContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperdistintoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperdivContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperexpContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperigualaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperlogicoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermayorigualqueContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermayorqueContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermenorigualqueContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermenorqueContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermodContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermodexpContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermulContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpermuldivContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpernegContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperrestContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpersumContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OpersumrestContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$OperxorContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ParametroContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ParametrosContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ParentesisContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$PdContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$PiContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$PoliContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$PolinomioContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$PuntocomaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$RetornoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$ReturnContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$SentenciaContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$SignonumericoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$SignumericoContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$SumrestoperContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$WhileContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico$WhilebucleContext.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintactico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoBaseVisitor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sintacticoVisitor.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +178,7 @@
       <workItem from="1672828431151" duration="11329000" />
       <workItem from="1672914828666" duration="10843000" />
       <workItem from="1673087762763" duration="16930000" />
-      <workItem from="1673189336710" duration="278000" />
+      <workItem from="1673189336710" duration="2297000" />
     </task>
     <servers />
   </component>

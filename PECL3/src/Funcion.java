@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Funcion {
 
     private String identificador;               //nombre de la funcion
-    private ArrayList<String> idArgumentos;     //lista de tipos de parametros
+    private ArrayList<String> idArgumentos;     //nombre de parametros
     private ParseTree raiz;
 
     public Funcion(String identificador, ArrayList<String> idArgumentos, ParseTree raiz) {
@@ -28,10 +28,6 @@ public class Funcion {
 
     public ParseTree getRaiz() {
         return raiz;
-    }
-
-    public void setRaiz(ParseTree raiz) {
-        this.raiz = raiz;
     }
 
     @Override

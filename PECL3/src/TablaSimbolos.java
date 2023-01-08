@@ -27,10 +27,6 @@ public class TablaSimbolos {
         return tabla.get(id);
     }
 
-    public String getValor(String id) {
-        return tabla.get(id).getLexema();
-    }
-
     public Dato getRetorno() {
         return retorno;
     }
@@ -48,42 +44,12 @@ public class TablaSimbolos {
         return tabla.get(id).getTipo();
     }
 
-    public int getTamTabla() {
-        return tabla.size();
-    }
-
     public HashMap<String, Funcion> getTablaFunciones() {
         return tablaFunciones;
     }
 
     public void setRetorno(Dato retorno) {
         this.retorno = retorno;
-    }
-
-    public void setElem(String id, Dato dato) {
-        if (getTipo(id).equals(dato.getTipo())) {
-            addElem(id, dato);
-        }
-        else {
-            System.out.println("Tipo no valido");
-        }
-    }
-
-    /**
-     * Metodo que elimina una entrada en la tabla de paginas
-     * @param id
-     */
-    public void removeElem(String id) {
-        tabla.remove(id);
-    }
-
-    /**
-     * Metodo que añade datos de una funcion a la tabla
-     * @param id
-     * @param funcion
-     */
-    public void addFuncion(String id, Funcion funcion) {
-        tablaFunciones.put(id, funcion);
     }
 
     /**
@@ -93,14 +59,6 @@ public class TablaSimbolos {
      */
     public Funcion getFuncion(String id) {
         return tablaFunciones.get(id);
-    }
-
-    /**
-     * Metodo para eliminar la entrada de una funcion
-     * @param id
-     */
-    public void removeFuncion(String id) {
-        tablaFunciones.remove(id);
     }
 
     public void mostrarTablaSimbolo() {

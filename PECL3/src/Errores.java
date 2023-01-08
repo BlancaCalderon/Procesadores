@@ -54,9 +54,5 @@ public class Errores extends Exception {
             case 53 -> System.out.println("La funcion val necesita un polinomio a evaluar");
         }
     }
-
-    public int getTipoError() {
-        return tipoError;
-    }
 }
 

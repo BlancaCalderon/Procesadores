@@ -23,10 +23,10 @@ public class AnalizadorVisitor<T> extends sintacticoBaseVisitor{
         String nombre = ctx.getChild(1).getText();
         ArrayList<String> parametros;
         try {
-            parametros = new ArrayList<String>(Arrays.asList(ctx.cuerpofuncion().parametros().getText().split(",")));
+            parametros = new ArrayList<>(Arrays.asList(ctx.cuerpofuncion().parametros().getText().split(",")));
         }
         catch (NullPointerException npe) {
-            parametros = new ArrayList<String>();
+            parametros = new ArrayList<>();
         }
         Funcion funcion = new Funcion(nombre, parametros, ctx);
 

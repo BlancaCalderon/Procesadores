@@ -29,11 +29,6 @@ public class Dato {
         }
     }
 
-    public Dato(String lexema, String tipo) {
-        this.lexema = lexema;
-        this.tipo = tipo;
-    }
-
     public String getLexema() {
         return lexema;
     }
@@ -52,10 +47,6 @@ public class Dato {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public void setArbol(sintactico.PoliContext arbol) {
-        this.arbol = arbol;
     }
 
     private sintactico.PoliContext construirArbol(String lexemaPolinomio) {

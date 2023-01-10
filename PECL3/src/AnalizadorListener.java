@@ -322,12 +322,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         Dato b = pila.pop();
         Dato a = pila.pop();
 
-        if (b.getTipo().equals("var")) {
-            b = getElemTabla(b.getLexema());
-        }
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
         String resultado = "";
 
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
@@ -373,13 +367,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         Dato b = pila.pop();
         Dato a = pila.pop();
 
-        if (b.getTipo().equals("var")) {
-            b = getElemTabla(b.getLexema());
-        }
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
-
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
             if (ctx.getChild(1).getText().equals("*")) {
                 resultado = String.valueOf(Integer.parseInt(a.getLexema()) * Integer.parseInt(b.getLexema()));
@@ -408,13 +395,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         Dato b = pila.pop();
         Dato a = pila.pop();
 
-        if (b.getTipo().equals("var")) {
-            b = getElemTabla(b.getLexema());
-        }
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
-
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
             if (ctx.getChild(1).getText().equals("%")) {
                 resultado = Integer.parseInt(a.getLexema()) % Integer.parseInt(b.getLexema());
@@ -433,13 +413,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         boolean resultado;
         Dato b = pila.pop();
         Dato a = pila.pop();
-
-        if (b.getTipo().equals("var")) {
-            b = getElemTabla(b.getLexema());
-        }
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
 
         if (a.getTipo().equals("int") && b.getTipo().equals("int")) {
             String opcode = ctx.getChild(1).getText();
@@ -471,13 +444,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
         Dato b = pila.pop();
         Dato a = pila.pop();
 
-        if (b.getTipo().equals("var")) {
-            b = getElemTabla(b.getLexema());
-        }
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
-
         if (a.getTipo().equals("boolean") && b.getTipo().equals("boolean")) {
             String opcode = ctx.getChild(1).getText();
             switch (opcode) {
@@ -500,10 +466,6 @@ public class AnalizadorListener extends sintacticoBaseListener {
     public void exitNegacion(sintactico.NegacionContext ctx) throws Errores {
         boolean resultado;
         Dato a = pila.pop();
-
-        if (a.getTipo().equals("var")) {
-            a = getElemTabla(a.getLexema());
-        }
 
         if (a.getTipo().equals("boolean")) {
             resultado = !Boolean.parseBoolean(a.getLexema());
